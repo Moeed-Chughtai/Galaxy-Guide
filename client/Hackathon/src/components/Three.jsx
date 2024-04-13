@@ -8,6 +8,10 @@ import mercuryimg from '../images/planetMeshes/mercury.webp';
 import sunimg from '../images/planetMeshes/sun.jpg';
 import venusimg from '../images/planetMeshes/venus.jpg';
 import earthimg from '../images/planetMeshes/earth.jpg';
+import jupiterimg from '../images/planetMeshes/Jupiter.webp';
+import saturnimg from '../images/planetMeshes/saturn.jpg';
+import uranusimg from '../images/planetMeshes/uranus.png';
+import neptuneimg from '../images/planetMeshes/neptune.jpg';
 
 function createPlanet(planetName, size, distance, meshImg, scene, textureLoader) {
     const planetGeo = new THREE.SphereGeometry(size, size, size);
@@ -19,7 +23,16 @@ function createPlanet(planetName, size, distance, meshImg, scene, textureLoader)
 
     planet.position.set(distance, 0, 0);
     console.log(planetName + " created" + " at " + planet.position.x + " " + planet.position.y + " " + planet.position.z)
+
+    return planet;
 }
+
+function startOrbit(planet, multiplier, distance,  time) {
+    planet.position.x = distance * Math.cos(time * multiplier);
+    planet.position.z = distance * Math.sin(time * multiplier);
+}
+    
+
 
 function MyThree() {
   const refContainer = useRef(null);
@@ -101,8 +114,12 @@ function MyThree() {
 
     mercury.position.set(200, 0, 0)
 
-    createPlanet("venus", 20, 400, venusimg, scene, textureLoader);
-    createPlanet("earth", 30, 600, earthimg, scene, textureLoader);
+    const venus = createPlanet("venus", 20, 400, venusimg, scene, textureLoader);
+    const earth = createPlanet("earth", 30, 600, earthimg, scene, textureLoader);
+    const jupiter = createPlanet("jupiter", 50, 800, jupiterimg, scene, textureLoader);
+    const saturn = createPlanet("saturn", 40, 1000, saturnimg, scene, textureLoader);
+    createPlanet("uranus", 30, 1200, uranusimg, scene, textureLoader);
+    createPlanet("neptune", 30, 1400, neptuneimg, scene, textureLoader);
 
     //add sun
     const sunGeo = new THREE.SphereGeometry(100, 100, 100);
@@ -121,13 +138,17 @@ function MyThree() {
     // scene.add(sunLight);
 
     const sunLight = new THREE.HemisphereLight(0xffffff, 0x000000, 1);
-scene.add(sunLight);
+    scene.add(sunLight);
 
     
-
+    var time = 0
 
     var animate = function () {
       requestAnimationFrame(animate);
+      time += 0.01;
+      startOrbit(mercury, 1, 200, time);
+      startOrbit(venus, 0.5, 400, time);
+
     
       //update camera dependant on mouse position
       controls.update();
