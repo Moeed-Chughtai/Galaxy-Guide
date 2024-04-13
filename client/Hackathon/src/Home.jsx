@@ -14,12 +14,16 @@ function Home() {
         <div>
             <div className='title-and-button'>
                 <h1>Planets</h1>
-                {/* Pass the planetId as an argument to togglePopup */}
                 <button onClick={() => togglePopup(1)}>Sun</button>
                 <button onClick={() => togglePopup(2)}>Mercury</button>
                 <button onClick={() => togglePopup(3)}>Venus</button>
+                <button onClick={() => togglePopup(4)}>Earth</button>
+                <button onClick={() => togglePopup(5)}>Mars</button>
+                <button onClick={() => togglePopup(6)}>Jupiter</button>
+                <button onClick={() => togglePopup(7)}>Saturn</button>
+                <button onClick={() => togglePopup(8)}>Uranus</button>
+                <button onClick={() => togglePopup(9)}>Neptune</button>
             </div>
-            {/* Pass selectedPlanet and showPopup as props to Popup */}
             <Popup trigger={showPopup} setTrigger={setShowPopup} planet={selectedPlanet} />
         </div>
     );

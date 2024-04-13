@@ -15,6 +15,8 @@ import uranusimg from '../images/planetMeshes/uranus.png';
 import neptuneimg from '../images/planetMeshes/neptune.jpg';
 // import { MarginSharp } from '@mui/icons-material';
 
+
+
 function createPlanet(planetName, size, distance, meshImg, scene, textureLoader) {
     const planetGeo = new THREE.SphereGeometry(size, size, size);
     const planetMat = new THREE.MeshStandardMaterial({
@@ -33,11 +35,79 @@ function startOrbit(planet, multiplier, distance,  time) {
     planet.position.x = distance * Math.cos(time * multiplier);
     planet.position.z = distance * Math.sin(time * multiplier);
 }
+
+function followPlanet(planet, camera) {
+    // camera.position.set(planet.position.x + 100, planet.position.y + 100, planet.position.z + 100);
+    // camera.lookAt(planet.position);
+
+    shouldFollowEarth = true;
+
+    
+}
+
+//pop up imports
+
+import React, { useState } from 'react';
+import Popup from './Popup';
+
+
+
+function createAlien() {
+  // body
+  const bodyGeometry = new THREE.SphereGeometry(5*5, 32*5, 32*5);
+  const bodyMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+  const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+
+  // eyes
+  const eyeGeometry = new THREE.SphereGeometry(2*5, 32*5, 32*5);
+  const eyeMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+  const eye1 = new THREE.Mesh(eyeGeometry, eyeMaterial);
+  eye1.position.set(3.5*5, 1*5, 4*5); 
+  const eye2 = eye1.clone();
+  eye2.position.x = -3.5*5; 
+
+  //  eyesone body
+  body.add(eye1);
+  body.add(eye2);
+
+  // pupils
+  const pupilGeometry = new THREE.SphereGeometry(1*5, 32*5, 32*5); 
+  const pupilMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+  const pupil1 = new THREE.Mesh(pupilGeometry, pupilMaterial);
+  pupil1.position.set(3.5*5, 1*5, 6*5); 
+  const pupil2 = pupil1.clone();
+  pupil2.position.x = -3.5*5; 
+
+  // pupils on body
+  body.add(pupil1);
+  body.add(pupil2);
+
+  return body;
+}
+
+
+
     
 
 
 function MyThree() {
+  //pop up stuff
+  const [selectedPlanet, setSelectedPlanet] = useState(null);
+    const [showPopup, setShowPopup] = useState(false);
+
+    const togglePopup = (planetId) => {
+        setSelectedPlanet(planetId); // Set the selected planet
+        setShowPopup(!showPopup); // Toggle the popup
+    };
+
+
+
+
+
+
   const refContainer = useRef(null);
+  let shouldLookAtEarth = false;
+
   useEffect(() => {
     // === THREE.JS CODE START ===
 
@@ -54,7 +124,7 @@ function MyThree() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild( renderer.domElement );
 
-    camera.position.set(100, 100, 100);
+    camera.position.set(100, 100, 1400);
     controls.update();
 
 
@@ -98,7 +168,7 @@ function MyThree() {
     //changes rotation to fit grid
     plane.rotation.x = -0.5 * 3.1415926
 
-    scene.add(plane);
+    // scene.add(plane);   ////////////////add white flat here
 
     //grid
 
@@ -124,6 +194,10 @@ function MyThree() {
     const uranus = createPlanet("uranus", 30, 1400, uranusimg, scene, textureLoader);
     const neptune = createPlanet("neptune", 30, 1600, neptuneimg, scene, textureLoader);
 
+    const alien = createAlien();
+    alien.position.set(200, 0, 0); 
+    scene.add(alien);
+
     //add sun
     const sunGeo = new THREE.SphereGeometry(100, 100, 100);
     const sunMat = new THREE.MeshStandardMaterial({
@@ -143,20 +217,24 @@ function MyThree() {
     const sunLight = new THREE.HemisphereLight(0xffffff, 0x000000, 1);
     scene.add(sunLight);
 
+
     
     var time = 0
+    var time2 = 0
 
     //tilt start axis so they spin diff
     var pi = 3.1415926
     mercury.rotation.x = 0;
     venus.rotation.x = (177*pi)/180;
     earth.rotation.x = (23*pi)/180;
-    // mars
+    mars.rotation.x = (25*pi)/180;
     jupiter.rotation.x = (3*pi)/180;
     saturn.rotation.x = (27*pi)/180;
     uranus.rotation.x = (98*pi)/180;
     neptune.rotation.x = (28*pi)/180;
 
+    var shouldFollowEarth = false
+    let earthCameraOffset = new THREE.Vector3(0, 0, 200);
 
     var animate = function () {
       requestAnimationFrame(animate);
@@ -164,10 +242,11 @@ function MyThree() {
       startOrbit(mercury, 1, 200, time);
       startOrbit(venus, 0.5, 400, time);
       startOrbit(earth, 0.3, 600, time);
-      startOrbit(jupiter, 0.2, 800, time);
-      startOrbit(saturn, 0.1, 1000, time);
-      startOrbit(uranus, 0.07, 1200, time);
-      startOrbit(neptune, 0.05, 1400, time);
+      startOrbit(mars, 0.25, 800, time);
+      startOrbit(jupiter, 0.2, 1000, time);
+      startOrbit(saturn, 0.1, 1200, time);
+      startOrbit(uranus, 0.07, 1400, time);
+      startOrbit(neptune, 0.05, 1600, time);
 
       //spin planets
       // mercury.rotation.y += 0.01;
@@ -179,7 +258,11 @@ function MyThree() {
       neptune.rotation.y += 0.01;
 
 
-    
+      if (shouldFollowEarth) {
+        let newPosition = earth.position.clone().add(earthCameraOffset);
+        camera.position.copy(newPosition);
+        camera.lookAt(earth.position);
+      }
       //update camera dependant on mouse position
       controls.update();
     
@@ -187,9 +270,35 @@ function MyThree() {
     };
     animate();
 
+    window.addEventListener('keydown', function(event) {
+      if (event.key === '1') {
+        shouldLookAtEarth = true;
+
+        togglePopup(4);
+      }
+    });
+
+    setInterval(() => {
+      if (shouldLookAtEarth) {
+        let direction = new THREE.Vector3().subVectors(earth.position, camera.position);
+        direction.normalize();
+        direction.multiplyScalar(-200);
+    
+        let newPosition = earth.position.clone().add(direction);
+        newPosition.add(earth.position.clone().normalize().multiplyScalar(300)); // Follow Earth's orbit
+    
+        camera.position.copy(newPosition);
+        camera.lookAt(earth.position);
+      }
+    }, 20);
+  
+
   }, []);
   return (
-    <div ref={refContainer}></div>
+    <div ref={refContainer}>
+      <Popup trigger={showPopup} setTrigger={setShowPopup} planet={selectedPlanet} />
+    </div>
+
 
   );
 }
