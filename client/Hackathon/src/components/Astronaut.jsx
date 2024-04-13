@@ -9,9 +9,7 @@ const Astronaut = ({ text }) => {
             <img src={astronautImage} className='astronaut-image' />
             <div className='speech-bubble-container'>
                 <img src={speechBubbleImage} className='speech-bubble-image' />
-                <div className='speech-text'>
-                    <AstronautSpeech text={text} />
-                </div>
+                <AstronautSpeech text={text} />
             </div>
         </div>
     )
