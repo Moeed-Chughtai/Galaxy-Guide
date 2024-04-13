@@ -45,6 +45,13 @@ function followPlanet(planet, camera) {
     
 }
 
+//pop up imports
+
+import React, { useState } from 'react';
+import Popup from './Popup';
+
+
+
 function createAlien() {
   // body
   const bodyGeometry = new THREE.SphereGeometry(5*5, 32*5, 32*5);
@@ -84,6 +91,20 @@ function createAlien() {
 
 
 function MyThree() {
+  //pop up stuff
+  const [selectedPlanet, setSelectedPlanet] = useState(null);
+    const [showPopup, setShowPopup] = useState(false);
+
+    const togglePopup = (planetId) => {
+        setSelectedPlanet(planetId); // Set the selected planet
+        setShowPopup(!showPopup); // Toggle the popup
+    };
+
+
+
+
+
+
   const refContainer = useRef(null);
   let shouldLookAtEarth = false;
 
@@ -252,6 +273,8 @@ function MyThree() {
     window.addEventListener('keydown', function(event) {
       if (event.key === '1') {
         shouldLookAtEarth = true;
+
+        togglePopup(4);
       }
     });
 
@@ -272,7 +295,10 @@ function MyThree() {
 
   }, []);
   return (
-    <div ref={refContainer}></div>
+    <div ref={refContainer}>
+      <Popup trigger={showPopup} setTrigger={setShowPopup} planet={selectedPlanet} />
+    </div>
+
 
   );
 }
