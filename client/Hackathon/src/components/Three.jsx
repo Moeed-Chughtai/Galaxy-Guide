@@ -6,6 +6,8 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import andromeda1080 from '../images/galaxies/andromeda1080.jpg';
 import mercuryimg from '../images/planetMeshes/mercury.webp';
 import sunimg from '../images/planetMeshes/sun.jpg';
+import venusimg from '../images/planetMeshes/venus.jpg';
+import earthimg from '../images/planetMeshes/earth.jpg';
 
 function createPlanet(planetName, size, distance, meshImg, scene, textureLoader) {
     const planetGeo = new THREE.SphereGeometry(size, size, size);
@@ -99,7 +101,8 @@ function MyThree() {
 
     mercury.position.set(200, 0, 0)
 
-    createPlanet("venus", 10, 400, mercuryimg, scene, textureLoader);
+    createPlanet("venus", 20, 400, venusimg, scene, textureLoader);
+    createPlanet("earth", 30, 600, earthimg, scene, textureLoader);
 
     //add sun
     const sunGeo = new THREE.SphereGeometry(100, 100, 100);
