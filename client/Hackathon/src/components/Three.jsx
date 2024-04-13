@@ -84,6 +84,37 @@ function createAlien() {
 
   return body;
 }
+let pivot;
+function createOrbitingAlien(planet, camera, scene) {
+  
+  const alien = createAlien();
+  
+  pivot = new THREE.Object3D();
+  pivot.position.copy(planet.position);
+  
+
+  alien.position.set(0, 0,  planet.geometry.parameters.radius); 
+  
+
+  pivot.add(alien);
+  
+ 
+  scene.add(pivot);
+  
+  
+  // const animate = function () {
+  //   requestAnimationFrame(animate);
+    
+
+  //   pivot.rotation.y += 0.01;
+    
+  //   renderer.render(scene, camera);
+  // };
+  
+  
+}
+
+
 
 
 
@@ -235,6 +266,7 @@ function MyThree() {
 
     var shouldFollowEarth = false
     let earthCameraOffset = new THREE.Vector3(0, 0, 200);
+    // let pivot = null;
 
     var animate = function () {
       requestAnimationFrame(animate);
@@ -256,6 +288,18 @@ function MyThree() {
       saturn.rotation.y += 0.01;
       uranus.rotation.y += 0.01;
       neptune.rotation.y += 0.01;
+
+      //for alien orbit
+      if (pivot) {
+        pivot.rotation.y += 0.5;
+        // console.log("pivot rotation" + pivot.rotation.y)
+
+        // planet.position.x = distance * Math.cos(time * multiplier);
+        // planet.position.z = distance * Math.sin(time * multiplier);
+
+        pivot.position.copy(earth.position);
+        alien.position.set(earth.position.x , earth.position.y, earth.position.z + 2.5*earth.geometry.parameters.radius ); // earth.geometry.parameters.radius
+      }
 
 
       if (shouldFollowEarth) {
@@ -291,7 +335,37 @@ function MyThree() {
         camera.lookAt(earth.position);
       }
     }, 20);
-  
+    
+
+    const mousePosition = new THREE.Vector2();
+    window.addEventListener('mousemove', (event) => {
+      mousePosition.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mousePosition.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    }
+    );
+
+    const rayCaster = new THREE.Raycaster();
+
+    window.addEventListener('click', () => {
+      rayCaster.setFromCamera(mousePosition, camera);
+      const intersects = rayCaster.intersectObjects(scene.children, true);
+      if (intersects.length > 0) {
+        const object = intersects[0].object;
+        if (object === earth) {
+          // shouldFollowEarth = !shouldFollowEarth;
+
+         
+          // shouldFollowEarth = true;
+
+          // shouldLookAtEarth = !shouldLookAtEarth;
+          shouldLookAtEarth = true;
+
+          togglePopup(4);
+
+          createOrbitingAlien(earth, camera, scene);
+        }
+      }
+    });
 
   }, []);
   return (
