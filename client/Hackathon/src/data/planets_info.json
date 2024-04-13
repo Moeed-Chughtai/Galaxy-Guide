@@ -4,9 +4,13 @@
         "name": "Sun",
         "facts": [
             "Mercury is the closest planet to the Sun.",
-            "It is named after the Roman messenger god Mercury."
+            "It is named after the Roman messenger god Mercury.",
+            ""
         ],
-        "body_paragraph": "Mercury is the smallest planet in the Solar System and the one closest to the Sun, with an orbital period of about 88 Earth days. Seen from Earth, it appears to move around its orbit in about 116 days."
+        "body_paragraph": ["The Sun's brilliance is not just limited to its visible radiance. Deep within its core, a complex fusion process occurs, where hydrogen atoms fuse together to form helium, releasing tremendous amounts of energy in the process.",
+        "This fusion process powers the Sun, sustaining its luminosity and warmth over billions of years. Moreover, the Sun's magnetic field plays a crucial role in shaping the dynamics of our solar system.",
+        " Solar flares, coronal mass ejections, and other solar phenomena arise from the intricate interplay of magnetic fields, sometimes leading to stunning auroras on Earth and, in extreme cases, impacting satellite communications and power grids. ",
+        "Our understanding of the Sun continues to evolve through advancements in technology and ongoing space exploration missions. As we delve deeper into the mysteries of our nearest star, we gain a deeper appreciation for its significance in the grand tapestry of the cosmos."]
     },
     {
         "id": 2,
@@ -15,7 +19,7 @@
             "Mercury is the closest planet to the Sun.",
             "It is named after the Roman messenger god Mercury."
         ],
-        "body_paragraph": "Mercury is the smallest planet in the Solar System and the one closest to the Sun, with an orbital period of about 88 Earth days. Seen from Earth, it appears to move around its orbit in about 116 days."
+        "body_paragraph": "Mercury is the smallest and innermost planet in our solar system, orbiting closest to the Sun. Named after the Roman messenger god, Mercury's surface is heavily cratered and resembles Earth's moon. It has a thin atmosphere, primarily composed of oxygen, sodium, hydrogen, helium, and potassium, but it's so tenuous that it's considered practically nonexistent. Due to its proximity to the Sun, Mercury experiences extreme temperature variations, ranging from scorching highs of around 430 degrees Celsius (800 degrees Fahrenheit) during the day to freezing lows of about -180 degrees Celsius (-290 degrees Fahrenheit) at night. Despite its small size, Mercury has a relatively large iron core, making it one of the densest planets in the solar system. It completes a full orbit around the Sun in just 88 Earth days, but because of its slow rotation and short orbital period, a day on Mercury (one full rotation) lasts about 176 Earth days."
     },
     {
         "id": 3,
@@ -24,7 +28,7 @@
             "Venus is the hottest planet in our Solar System.",
             "It is often called Earth's sister planet due to their similar size and composition."
         ],
-        "body_paragraph": "Venus is the second planet from the Sun and the hottest in our Solar System, with surface temperatures exceeding 880°F (471°C). It is named after the Roman goddess of love and beauty."
+        "body_paragraph": "Venus is the second planet from the Sun in our solar system and is often called Earth's sister planet because they are similar in size and structure. It's named after the Roman goddess of love and beauty. Venus is covered in thick clouds made of sulfuric acid, which make it the brightest object in the sky after the Sun and the Moon. Despite being similar in size to Earth, Venus has a very different environment. It has a runaway greenhouse effect, trapping heat from the Sun and making its surface extremely hot, even hotter than Mercury, the closest planet to the Sun. Because of this, Venus is often called the hottest planet in our solar system, with temperatures reaching up to 470 degrees Celsius (880 degrees Fahrenheit). Venus also spins very slowly on its axis, taking longer to complete one rotation than it does to orbit the Sun. Scientists have sent spacecraft to study Venus to learn more about its thick atmosphere and extreme conditions, helping us understand more about the different planets in our solar system."
     },
     {
         "id": 4,
