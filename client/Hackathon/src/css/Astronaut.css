@@ -1,11 +1,11 @@
 .astronaut-container {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     display: flex;
     align-items: flex-end;
     background: black;
-
+    padding: 20px;
 }
 
 .astronaut-image {
@@ -15,18 +15,10 @@
 
 .speech-bubble-container {
     position: relative;
+    display: flex;
 }
 
 .speech-bubble-image {
     width: 100px;
     height: auto;
-}
-
-.speech-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 14px;
 }
