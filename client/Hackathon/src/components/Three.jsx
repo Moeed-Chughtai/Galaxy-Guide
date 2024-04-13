@@ -27,7 +27,9 @@ function MyThree() {
     // use ref as a mount point of the Three.js scene instead of the document.body
     refContainer.current && refContainer.current.appendChild( renderer.domElement );
 
-
+    //ambient lighting
+    const overallLight = new THREE.AmbientLight(0x333333)
+    scene.add(overallLight)
     
     //plane geomreyr
     const planeGeo = new THREE.PlaneGeometry(200, 200);
@@ -48,15 +50,19 @@ function MyThree() {
     scene.add(gridHelper)
 
 
-
-    const geo = new THREE.SphereGeometry(20, 20, 20);
-    const mat = new THREE.MeshBasicMaterial({
-        color: 0x00ff00
+    //add sun
+    const sunGeo = new THREE.SphereGeometry(20, 20, 20);
+    const sunMat = new THREE.MeshStandardMaterial({
+        color: 0x00ff00,
+        emissive: 0x00ff00,   //makes it appear brighter
     });
-    const sphere = new THREE.Mesh(geo, mat);
-    scene.add(sphere);
+    const sun = new THREE.Mesh(sunGeo, sunMat);
+    scene.add(sun);
 
-    
+    //sunlight
+    const sunLight = new THREE.PointLight(0x00ff00, 2, 100)//2nd param is intensity
+    sunLight.position.set(sun.position.x, sun.position.y, sun.position.z);
+    scene.add(sunLight);
 
     
 
