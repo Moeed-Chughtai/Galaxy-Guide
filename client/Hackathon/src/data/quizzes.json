@@ -1,0 +1,93 @@
+[
+    {
+        "id": 1,
+        "name": "Sun",
+        "question1": "What is the Sun?",
+        "answers1": ["A planet", "A star", "A moon", "A star"],
+        "question2": "How does the Sun help us?",
+        "answers2": ["It provides us with light and warmth", "It tells us the time", "It helps us grow vegetables", "It provides us with light and warmth"],
+        "question3": "How big is the Sun compared to the Earth?",
+        "answers3": ["The Sun is smaller than the Earth?", "The Sun is about the same size as the Earth", "The Sun is much bigger than the Earth", "The Sun is much bigger than the Earth"]
+    },
+    {
+        "id": 2,
+        "name": "Mercury",
+        "question1": "What is Mercury?",
+        "answers1": ["A planet", "A star", "A moon", "A planet"],
+        "question2": "Which statement about Mercury is true?",
+        "answers2": ["It is the smallest planet in our solar system", " It is the largest planet in our solar system", "It is a gas giant like Jupiter", "It is the smallest planet in our solar system"],
+        "question3": "How long does it take for Mercury to orbit the Sun?",
+        "answers3": ["365 days", "24 days", "88 days", "88 days"]
+    },
+    {
+        "id": 3,
+        "name": "Venus",
+        "question1": "How many moons does Venus have?",
+        "answers1": ["0", "1", "2", "2"],
+        "question2": "What is special about Venus's atmosphere?",
+        "answers2": ["It is made of water vapour", "It is poisonous to humans", "It has breathable air", "It is poisonous to humans"],
+        "question3": "Which planet is Venus often called?",
+        "answers3": ["The Blue Planet", "The Red Planet", "The Evening Star", "The Evening Star"]
+    },
+    {
+        "id": 4,
+        "name": "Earth",
+        "question1": "How many continents are there on Earth?",
+        "answers1": ["5", "7", "10", "7"],
+        "question2": "What covers most of the Earth's surface?",
+        "answers2": ["Mountains", "Oceans", "Forests", "Oceans"],
+        "question3": "What do we call the imaginary line that divides the Earth into the Northern and Southern Hemispheres?",
+        "answers3": ["Equator", "Tropic of Cancer", "Prime Meridian", "Equator"]
+    },
+    {
+        "id": 5,
+        "name": "Mars",
+        "question1": "What is unique about Mars' atmosphere compared to Earth's?",
+        "answers1": ["Mars has a thicker atmosphere than Earth", "Mars has no atmosphere", "Mars has a thinner atmosphere and is made mostly of carbon dioxide", "Mars has a thinner atmosphere and is made mostly of carbon dioxide"],
+        "question2": "What colour is Mars?",
+        "answers2": ["Blue", "Red", "Green", "Red"],
+        "question3": "Which famous robot explored Mars?",
+        "answers3": ["RoboCop", "Wall-E", "Curiosity", "Curiosity"]
+    },
+    {
+        "id": 6,
+        "name": "Jupiter",
+        "question1": "How many moons does Jupiter have?",
+        "answers1": ["1", "5", "79", "79"],
+        "question2": "What is the giant red spot on Jupiter?",
+        "answers2": ["A storm", "A volcano", "A desert", "A storm"],
+        "question3": "What is Jupiter mostly made of?",
+        "answers3": ["Water", "Rocks", "Gas", "Gas"]
+    },
+    {
+        "id": 7,
+        "name": "Saturn",
+        "question1": "What is Saturn made mostly of?",
+        "answers1": ["Water", "Rocks", "Gas", "Gas"],
+        "question2": "What is the most famous feature of Saturn?",
+        "answers2": ["Its rings", "Its moons", "Its volcanoes", "Its rings"],
+        "question3": "How many moons does Saturn have?",
+        "answers3": ["More than 80", "Less than 10", "Exactly 1", "More than 80"]
+    },
+    {
+        "id": 8,
+        "name": "Uranus",
+        "question1": "How is Uranus different from most other planets in our solar system?",
+        "answers1": ["It has rings around it", "It is the smallest planet", "It spins on its side", "It spins on its side"],
+        "question2": "What colour is Uranus?",
+        "answers2": ["Red", "Blue", "Yellow", "Blue"],
+        "question3": "How long does it take for Uranus to orbit around the Sun?",
+        "answers3": ["365 days", "24 hours", "84 years", "84 years"]
+    },
+    {
+        "id": 9,
+        "name": "Neptune",
+        "question1": "How far is Neptune from the Sun?",
+        "answers1": ["Closer than Earth", "About the same distance as Earth", "Much farther than Earth", "Much farther than Earth"],
+        "question2": "Which planet is Neptune named after?",
+        "answers2": ["A famous scientist", "The Roman god of the sea", "The largest moon in the solar system", "The Roman god of the sea"],
+        "question3": "What is special about Neptune's weather?",
+        "answers3": ["It is always sunny", "It has strong winds and storms", "It has the strongest winds in the solar system", "It has the strongest winds in the solar system"]
+    }
+]
+    
