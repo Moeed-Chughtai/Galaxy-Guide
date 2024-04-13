@@ -15,35 +15,38 @@ import uranusimg from '../images/planetMeshes/uranus.png';
 import neptuneimg from '../images/planetMeshes/neptune.jpg';
 // import { MarginSharp } from '@mui/icons-material';
 
+// import * as functions from './threeFunctions'
+import { createPlanet, startOrbit, followPlanet } from './threeFunctions';
 
 
-function createPlanet(planetName, size, distance, meshImg, scene, textureLoader) {
-    const planetGeo = new THREE.SphereGeometry(size, size, size);
-    const planetMat = new THREE.MeshStandardMaterial({
-        map: textureLoader.load(meshImg),
-    });
-    const planet = new THREE.Mesh(planetGeo, planetMat);
-    scene.add(planet);
 
-    planet.position.set(distance, 0, 0);
-    console.log(planetName + " created" + " at " + planet.position.x + " " + planet.position.y + " " + planet.position.z)
+// function createPlanet(planetName, size, distance, meshImg, scene, textureLoader) {
+//     const planetGeo = new THREE.SphereGeometry(size, size, size);
+//     const planetMat = new THREE.MeshStandardMaterial({
+//         map: textureLoader.load(meshImg),
+//     });
+//     const planet = new THREE.Mesh(planetGeo, planetMat);
+//     scene.add(planet);
 
-    return planet;
-}
+//     planet.position.set(distance, 0, 0);
+//     console.log(planetName + " created" + " at " + planet.position.x + " " + planet.position.y + " " + planet.position.z)
 
-function startOrbit(planet, multiplier, distance,  time) {
-    planet.position.x = distance * Math.cos(time * multiplier);
-    planet.position.z = distance * Math.sin(time * multiplier);
-}
+//     return planet;
+// }
 
-function followPlanet(planet, camera) {
-    // camera.position.set(planet.position.x + 100, planet.position.y + 100, planet.position.z + 100);
-    // camera.lookAt(planet.position);
+// function startOrbit(planet, multiplier, distance,  time) {
+//     planet.position.x = distance * Math.cos(time * multiplier);
+//     planet.position.z = distance * Math.sin(time * multiplier);
+// }
 
-    shouldFollowEarth = true;
+// function followPlanet(planet, camera) {
+//     // camera.position.set(planet.position.x + 100, planet.position.y + 100, planet.position.z + 100);
+//     // camera.lookAt(planet.position);
+
+//     shouldFollowEarth = true;
 
     
-}
+// }
 
 //pop up imports
 
@@ -232,18 +235,11 @@ function MyThree() {
     //add sun
     const sunGeo = new THREE.SphereGeometry(100, 100, 100);
     const sunMat = new THREE.MeshStandardMaterial({
-        // color: 0x00ff00,
-        // emissive: 0xffffff,   //makes it appear brighter
+  
         map: textureLoader.load(sunimg),
     });
     const sun = new THREE.Mesh(sunGeo, sunMat);
     scene.add(sun);
-
-    //sunlight
-
-    // const sunLight = new THREE.PointLight(0xffffff, 1, 4000)//2nd param is intensity beofre 2, does not seem to be working
-    // sunLight.position.set(sun.position.x + 100, sun.position.y + 100, sun.position.z + 100);
-    // scene.add(sunLight);
 
     const sunLight = new THREE.HemisphereLight(0xffffff, 0x000000, 1);
     scene.add(sunLight);
@@ -305,6 +301,10 @@ function MyThree() {
       if (shouldFollowEarth) {
         let newPosition = earth.position.clone().add(earthCameraOffset);
         camera.position.copy(newPosition);
+      
+        // Increase the camera's y position to move it higher
+        camera.position.y += 500;
+      
         camera.lookAt(earth.position);
       }
       //update camera dependant on mouse position
