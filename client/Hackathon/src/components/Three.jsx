@@ -21,7 +21,7 @@ function MyThree() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild( renderer.domElement );
 
-    camera.position.set(50, 50, 100);
+    camera.position.set(100, 100, 100);
     controls.update();
 
     // use ref as a mount point of the Three.js scene instead of the document.body
@@ -30,18 +30,22 @@ function MyThree() {
 
     
     //plane geomreyr
-    const planeGeo = new THREE.PlaneGeometry(30, 30);
+    const planeGeo = new THREE.PlaneGeometry(200, 200);
     const planeMat = new THREE.MeshBasicMaterial({
         color: 0xffffff,
         side: THREE.DoubleSide
     });
     const plane = new THREE.Mesh(planeGeo, planeMat);
 
+    //changes rotation to fit grid
+    plane.rotation.x = -0.5 * 3.1415926
+
     scene.add(plane);
 
     //grid
 
-    const gridHelper = new THREE.GridHelper(30);
+    const gridHelper = new THREE.GridHelper(200, 8);
+    scene.add(gridHelper)
 
 
 
@@ -52,11 +56,10 @@ function MyThree() {
     const sphere = new THREE.Mesh(geo, mat);
     scene.add(sphere);
 
-    // camera.position.z = 50;
-    // camera.position.set(50, 50, 100);
+    
 
-    camera.position.set(50, 50, 100);
-    // controls.update();
+    
+
 
     var animate = function () {
       requestAnimationFrame(animate);
