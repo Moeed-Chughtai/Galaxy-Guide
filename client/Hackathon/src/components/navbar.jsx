@@ -4,7 +4,7 @@ import Astronaut from "./Astronaut.jsx";
 
 export default function Navbar() {
     return (
-        <>
+        <div className="body">
             <div class="bg-animation">
                 <div id="stars"></div>
                 <div id="stars2"></div>
@@ -82,6 +82,6 @@ export default function Navbar() {
                 </figcaption>
             </figure>
             <Astronaut text="Yoo whats up bro......." />
-        </>
+        </div>
     );
 }
