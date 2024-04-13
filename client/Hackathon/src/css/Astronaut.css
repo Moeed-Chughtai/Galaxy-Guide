@@ -1,0 +1,32 @@
+.astronaut-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: flex-end;
+    background: black;
+
+}
+
+.astronaut-image {
+    width: 100px;
+    height: auto;
+}
+
+.speech-bubble-container {
+    position: relative;
+}
+
+.speech-bubble-image {
+    width: 100px;
+    height: auto;
+}
+
+.speech-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+}
