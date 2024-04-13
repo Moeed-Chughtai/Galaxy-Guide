@@ -118,8 +118,8 @@ function MyThree() {
     const earth = createPlanet("earth", 30, 600, earthimg, scene, textureLoader);
     const jupiter = createPlanet("jupiter", 50, 800, jupiterimg, scene, textureLoader);
     const saturn = createPlanet("saturn", 40, 1000, saturnimg, scene, textureLoader);
-    createPlanet("uranus", 30, 1200, uranusimg, scene, textureLoader);
-    createPlanet("neptune", 30, 1400, neptuneimg, scene, textureLoader);
+    const uranus = createPlanet("uranus", 30, 1200, uranusimg, scene, textureLoader);
+    const neptune = createPlanet("neptune", 30, 1400, neptuneimg, scene, textureLoader);
 
     //add sun
     const sunGeo = new THREE.SphereGeometry(100, 100, 100);
@@ -148,6 +148,11 @@ function MyThree() {
       time += 0.01;
       startOrbit(mercury, 1, 200, time);
       startOrbit(venus, 0.5, 400, time);
+      startOrbit(earth, 0.3, 600, time);
+      startOrbit(jupiter, 0.2, 800, time);
+      startOrbit(saturn, 0.1, 1000, time);
+      startOrbit(uranus, 0.07, 1200, time);
+      startOrbit(neptune, 0.05, 1400, time);
 
     
       //update camera dependant on mouse position
