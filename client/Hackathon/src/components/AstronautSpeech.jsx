@@ -7,15 +7,12 @@ const AstronautSpeech = ({ text, onComplete }) => {
         let currentIndex = 0;
         const interval = setInterval(() => {
             setVisibleSpeech((prevText) => {
-                if (currentIndex < text.length)
-                {
+                if (currentIndex < text.length) {
                     return prevText + text[currentIndex];
-                }
-                else
-                {
+                } else {
+                    clearInterval(interval);
                     setTimeout(() => {
                         setVisibleSpeech('');
-                        onComplete();
                     }, 10000);
                 }
                 return prevText;
@@ -25,7 +22,8 @@ const AstronautSpeech = ({ text, onComplete }) => {
 
         return () => clearInterval(interval);
     }, [text, onComplete]);
+    
     return <div>{visibleSpeech}</div>
- };
+};
 
 export default AstronautSpeech;
