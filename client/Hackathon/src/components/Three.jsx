@@ -8,10 +8,12 @@ import mercuryimg from '../images/planetMeshes/mercury.webp';
 import sunimg from '../images/planetMeshes/sun.jpg';
 import venusimg from '../images/planetMeshes/venus.jpg';
 import earthimg from '../images/planetMeshes/earth.jpg';
+import marsimg from '../images/planetMeshes/mars.jpg';
 import jupiterimg from '../images/planetMeshes/Jupiter.webp';
 import saturnimg from '../images/planetMeshes/saturn.jpg';
 import uranusimg from '../images/planetMeshes/uranus.png';
 import neptuneimg from '../images/planetMeshes/neptune.jpg';
+// import { MarginSharp } from '@mui/icons-material';
 
 function createPlanet(planetName, size, distance, meshImg, scene, textureLoader) {
     const planetGeo = new THREE.SphereGeometry(size, size, size);
@@ -116,10 +118,11 @@ function MyThree() {
 
     const venus = createPlanet("venus", 20, 400, venusimg, scene, textureLoader);
     const earth = createPlanet("earth", 30, 600, earthimg, scene, textureLoader);
-    const jupiter = createPlanet("jupiter", 50, 800, jupiterimg, scene, textureLoader);
-    const saturn = createPlanet("saturn", 40, 1000, saturnimg, scene, textureLoader);
-    const uranus = createPlanet("uranus", 30, 1200, uranusimg, scene, textureLoader);
-    const neptune = createPlanet("neptune", 30, 1400, neptuneimg, scene, textureLoader);
+    const mars = createPlanet("mars", 20, 800, marsimg, scene, textureLoader);
+    const jupiter = createPlanet("jupiter", 50, 1000, jupiterimg, scene, textureLoader);
+    const saturn = createPlanet("saturn", 40, 1200, saturnimg, scene, textureLoader);
+    const uranus = createPlanet("uranus", 30, 1400, uranusimg, scene, textureLoader);
+    const neptune = createPlanet("neptune", 30, 1600, neptuneimg, scene, textureLoader);
 
     //add sun
     const sunGeo = new THREE.SphereGeometry(100, 100, 100);
@@ -143,6 +146,18 @@ function MyThree() {
     
     var time = 0
 
+    //tilt start axis so they spin diff
+    var pi = 3.1415926
+    mercury.rotation.x = 0;
+    venus.rotation.x = (177*pi)/180;
+    earth.rotation.x = (23*pi)/180;
+    // mars
+    jupiter.rotation.x = (3*pi)/180;
+    saturn.rotation.x = (27*pi)/180;
+    uranus.rotation.x = (98*pi)/180;
+    neptune.rotation.x = (28*pi)/180;
+
+
     var animate = function () {
       requestAnimationFrame(animate);
       time += 0.01;
@@ -153,6 +168,16 @@ function MyThree() {
       startOrbit(saturn, 0.1, 1000, time);
       startOrbit(uranus, 0.07, 1200, time);
       startOrbit(neptune, 0.05, 1400, time);
+
+      //spin planets
+      // mercury.rotation.y += 0.01;
+      venus.rotation.y += 0.01;
+      earth.rotation.y += 0.01;
+      jupiter.rotation.y += 0.01;
+      saturn.rotation.y += 0.01;
+      uranus.rotation.y += 0.01;
+      neptune.rotation.y += 0.01;
+
 
     
       //update camera dependant on mouse position
