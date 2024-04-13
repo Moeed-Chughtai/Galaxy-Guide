@@ -3,6 +3,8 @@ import * as THREE from 'three';
 import { useEffect, useRef } from "react";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
+import andromeda1080 from '../images/galaxies/andromeda1080.jpg';
+
 function MyThree() {
   const refContainer = useRef(null);
   useEffect(() => {
@@ -24,8 +26,31 @@ function MyThree() {
     camera.position.set(100, 100, 100);
     controls.update();
 
+
     // use ref as a mount point of the Three.js scene instead of the document.body
     refContainer.current && refContainer.current.appendChild( renderer.domElement );
+
+
+    //images loading
+    //these are flat background
+    const textureLoader = new THREE.TextureLoader();
+    // scene.background = textureLoader.load(andromeda2);
+
+    
+
+    const cubeTextureLoader = new THREE.CubeTextureLoader();
+    scene.background = cubeTextureLoader.load([
+        andromeda1080,
+        andromeda1080,
+        andromeda1080,
+        andromeda1080,
+        andromeda1080,
+        andromeda1080,
+        
+    ]);
+
+
+
 
     //ambient lighting
     const overallLight = new THREE.AmbientLight(0x333333)
@@ -46,12 +71,21 @@ function MyThree() {
 
     //grid
 
-    const gridHelper = new THREE.GridHelper(200, 8);
+    const gridHelper = new THREE.GridHelper(1000, 10);
     scene.add(gridHelper)
 
+    //add mercury
+    const mercuryGeo = new THREE.SphereGeometry(10, 10, 10);
+    const mercuryMat = new THREE.MeshBasicMaterial({
+        color: 0x00ff00,
+    });
+    const mercury = new THREE.Mesh(mercuryGeo, mercuryMat);
+    scene.add(mercury);
+
+    mercury.position.set(200, 0, 0)
 
     //add sun
-    const sunGeo = new THREE.SphereGeometry(20, 20, 20);
+    const sunGeo = new THREE.SphereGeometry(100, 100, 100);
     const sunMat = new THREE.MeshStandardMaterial({
         color: 0x00ff00,
         emissive: 0x00ff00,   //makes it appear brighter
