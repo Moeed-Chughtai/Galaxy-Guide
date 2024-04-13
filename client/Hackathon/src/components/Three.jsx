@@ -5,6 +5,19 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 import andromeda1080 from '../images/galaxies/andromeda1080.jpg';
 import mercuryimg from '../images/planetMeshes/mercury.webp';
+import sunimg from '../images/planetMeshes/sun.jpg';
+
+function createPlanet(planetName, size, distance, meshImg, scene, textureLoader) {
+    const planetGeo = new THREE.SphereGeometry(size, size, size);
+    const planetMat = new THREE.MeshStandardMaterial({
+        map: textureLoader.load(meshImg),
+    });
+    const planet = new THREE.Mesh(planetGeo, planetMat);
+    scene.add(planet);
+
+    planet.position.set(distance, 0, 0);
+    console.log(planetName + " created" + " at " + planet.position.x + " " + planet.position.y + " " + planet.position.z)
+}
 
 function MyThree() {
   const refContainer = useRef(null);
@@ -15,7 +28,7 @@ function MyThree() {
 
 
     var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
     
     //3d camera orbit view thing
     const controls = new OrbitControls(camera, refContainer.current); //refContainer.current
@@ -55,7 +68,7 @@ function MyThree() {
 
     //ambient lighting
     const overallLight = new THREE.AmbientLight(0x333333)
-    // scene.add(overallLight)
+    scene.add(overallLight)                                  //could be brighter?
     
     //plane geomreyr
     const planeGeo = new THREE.PlaneGeometry(200, 200);
@@ -77,7 +90,7 @@ function MyThree() {
 
     //add mercury
     const mercuryGeo = new THREE.SphereGeometry(10, 10, 10);
-    const mercuryMat = new THREE.MeshBasicMaterial({
+    const mercuryMat = new THREE.MeshStandardMaterial({           //
         // color: 0x00ff00,
         map: textureLoader.load(mercuryimg),
     });
@@ -86,19 +99,26 @@ function MyThree() {
 
     mercury.position.set(200, 0, 0)
 
+    createPlanet("venus", 10, 400, mercuryimg, scene, textureLoader);
+
     //add sun
     const sunGeo = new THREE.SphereGeometry(100, 100, 100);
     const sunMat = new THREE.MeshStandardMaterial({
-        color: 0x00ff00,
-        emissive: 0x00ff00,   //makes it appear brighter
+        // color: 0x00ff00,
+        // emissive: 0xffffff,   //makes it appear brighter
+        map: textureLoader.load(sunimg),
     });
     const sun = new THREE.Mesh(sunGeo, sunMat);
     scene.add(sun);
 
     //sunlight
-    const sunLight = new THREE.PointLight(0x00ff00, 2, 100)//2nd param is intensity
-    sunLight.position.set(sun.position.x, sun.position.y, sun.position.z);
-    scene.add(sunLight);
+
+    // const sunLight = new THREE.PointLight(0xffffff, 1, 4000)//2nd param is intensity beofre 2, does not seem to be working
+    // sunLight.position.set(sun.position.x + 100, sun.position.y + 100, sun.position.z + 100);
+    // scene.add(sunLight);
+
+    const sunLight = new THREE.HemisphereLight(0xffffff, 0x000000, 1);
+scene.add(sunLight);
 
     
 
