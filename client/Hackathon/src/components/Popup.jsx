@@ -1,6 +1,6 @@
 import React from 'react';
-import planetsData from './../planets_info.json';
-import './../popup_style.css';
+import planetsData from './../data/planets_info.json';
+import './../css/popup_style.css';
 
 function Popup({ trigger, setTrigger, planet }) {
     const planetData = planetsData.find(item => item.id === planet);
