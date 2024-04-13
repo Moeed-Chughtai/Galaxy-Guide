@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
+import Home from './Home'
 
 import Astronaut from './components/Astronaut'
 import MyThree from './components/Three';
