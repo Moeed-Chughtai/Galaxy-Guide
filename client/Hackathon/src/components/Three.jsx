@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 import andromeda1080 from '../images/galaxies/andromeda1080.jpg';
+import mercuryimg from '../images/planetMeshes/mercury.webp';
 
 function MyThree() {
   const refContainer = useRef(null);
@@ -54,7 +55,7 @@ function MyThree() {
 
     //ambient lighting
     const overallLight = new THREE.AmbientLight(0x333333)
-    scene.add(overallLight)
+    // scene.add(overallLight)
     
     //plane geomreyr
     const planeGeo = new THREE.PlaneGeometry(200, 200);
@@ -77,7 +78,8 @@ function MyThree() {
     //add mercury
     const mercuryGeo = new THREE.SphereGeometry(10, 10, 10);
     const mercuryMat = new THREE.MeshBasicMaterial({
-        color: 0x00ff00,
+        // color: 0x00ff00,
+        map: textureLoader.load(mercuryimg),
     });
     const mercury = new THREE.Mesh(mercuryGeo, mercuryMat);
     scene.add(mercury);
