@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import planetsData from './../data/planets_info.json';
+import Defend from './Defend'; // Ensure this matches the filename and export
 import './../css/popup_style.css';
 
 function Popup({ trigger, setTrigger, planet }) {
+    const [defendTrigger, setDefendTrigger] = useState(false); // New state for triggering defense
     const planetData = planetsData.find(item => item.id === planet);
 
     const handleClose = () => {
@@ -10,8 +12,10 @@ function Popup({ trigger, setTrigger, planet }) {
     };
 
     const handleDefend = () => {
+        // Set the trigger for Defend component
         setTrigger(false);
-    }
+        setDefendTrigger(!defendTrigger);
+    };
 
     return trigger ? (
         <div className="popup-frame">
@@ -36,6 +40,8 @@ function Popup({ trigger, setTrigger, planet }) {
                     </ul>
                 </div>
             </div>
+            {/* Conditional rendering of Defend component */}
+            {defendTrigger && <Defend trigger={defendTrigger} setTrigger={setDefendTrigger} planet={planet} />}
         </div>
     ) : null;
 }
