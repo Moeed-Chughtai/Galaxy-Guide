@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../css/Quiz.css";
 
-export default function Quiz() {
+export default function Quiz({ trigger, setTrigger, planet}) {
     const [currentQuestion, setCurrentQuestion] = useState(0);
 
     const questions = [
