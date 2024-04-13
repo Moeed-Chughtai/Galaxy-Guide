@@ -44,6 +44,42 @@ function followPlanet(planet, camera) {
 
     
 }
+
+function createAlien() {
+  // body
+  const bodyGeometry = new THREE.SphereGeometry(5*5, 32*5, 32*5);
+  const bodyMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+  const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+
+  // eyes
+  const eyeGeometry = new THREE.SphereGeometry(2*5, 32*5, 32*5);
+  const eyeMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+  const eye1 = new THREE.Mesh(eyeGeometry, eyeMaterial);
+  eye1.position.set(3.5*5, 1*5, 4*5); 
+  const eye2 = eye1.clone();
+  eye2.position.x = -3.5*5; 
+
+  //  eyesone body
+  body.add(eye1);
+  body.add(eye2);
+
+  // pupils
+  const pupilGeometry = new THREE.SphereGeometry(1*5, 32*5, 32*5); 
+  const pupilMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+  const pupil1 = new THREE.Mesh(pupilGeometry, pupilMaterial);
+  pupil1.position.set(3.5*5, 1*5, 6*5); 
+  const pupil2 = pupil1.clone();
+  pupil2.position.x = -3.5*5; 
+
+  // pupils on body
+  body.add(pupil1);
+  body.add(pupil2);
+
+  return body;
+}
+
+
+
     
 
 
@@ -137,6 +173,10 @@ function MyThree() {
     const uranus = createPlanet("uranus", 30, 1400, uranusimg, scene, textureLoader);
     const neptune = createPlanet("neptune", 30, 1600, neptuneimg, scene, textureLoader);
 
+    const alien = createAlien();
+    alien.position.set(200, 0, 0); 
+    scene.add(alien);
+
     //add sun
     const sunGeo = new THREE.SphereGeometry(100, 100, 100);
     const sunMat = new THREE.MeshStandardMaterial({
@@ -217,11 +257,17 @@ function MyThree() {
 
     setInterval(() => {
       if (shouldLookAtEarth) {
-        let newPosition = earth.position.clone().add(earthCameraOffset);
+        let direction = new THREE.Vector3().subVectors(earth.position, camera.position);
+        direction.normalize();
+        direction.multiplyScalar(-200);
+    
+        let newPosition = earth.position.clone().add(direction);
+        newPosition.add(earth.position.clone().normalize().multiplyScalar(300)); // Follow Earth's orbit
+    
         camera.position.copy(newPosition);
         camera.lookAt(earth.position);
       }
-    }, 2000);
+    }, 20);
   
 
   }, []);
