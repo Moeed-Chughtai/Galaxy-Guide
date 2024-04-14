@@ -37,7 +37,7 @@ export function followPlanet(planet, camera) {
     
 }
 
-export function createOrbitingAlien(planet, camera, scene) {
+export function createOrbitingAlien(planet, camera, scene, pivot) {
   
     const alien = createAlien();
     
@@ -87,12 +87,12 @@ body.add(pupil2);
 return body;
 }
 
-export function addAllPlanets(scene, textureLoader){
-    const venus = createPlanet("venus", 20, 400, venusimg, scene, textureLoader);
-    const earth = createPlanet("earth", 30, 600, earthimg, scene, textureLoader);
-    const mars = createPlanet("mars", 20, 800, marsimg, scene, textureLoader);
-    const jupiter = createPlanet("jupiter", 50, 1000, jupiterimg, scene, textureLoader);
-    const saturn = createPlanet("saturn", 40, 1200, saturnimg, scene, textureLoader);
-    const uranus = createPlanet("uranus", 30, 1400, uranusimg, scene, textureLoader);
-    const neptune = createPlanet("neptune", 30, 1600, neptuneimg, scene, textureLoader);
-}
+// export function addAllPlanets(scene, textureLoader){
+//     const venus = createPlanet("venus", 20, 400, venusimg, scene, textureLoader);
+//     const earth = createPlanet("earth", 30, 600, earthimg, scene, textureLoader);
+//     const mars = createPlanet("mars", 20, 800, marsimg, scene, textureLoader);
+//     const jupiter = createPlanet("jupiter", 50, 1000, jupiterimg, scene, textureLoader);
+//     const saturn = createPlanet("saturn", 40, 1200, saturnimg, scene, textureLoader);
+//     const uranus = createPlanet("uranus", 30, 1400, uranusimg, scene, textureLoader);
+//     const neptune = createPlanet("neptune", 30, 1600, neptuneimg, scene, textureLoader);
+// }

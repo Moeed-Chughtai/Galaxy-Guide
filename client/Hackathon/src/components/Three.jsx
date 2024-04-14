@@ -13,7 +13,7 @@ import jupiterimg from '../images/planetMeshes/Jupiter.webp';
 import saturnimg from '../images/planetMeshes/saturn.jpg';
 import uranusimg from '../images/planetMeshes/uranus.png';
 import neptuneimg from '../images/planetMeshes/neptune.jpg';
-import { MarginSharp } from '@mui/icons-material';
+// import { MarginSharp } from '@mui/icons-material';
 
 // import * as functions from './threeFunctions'
 import { createPlanet, startOrbit, followPlanet, createOrbitingAlien, createAlien} from './threeFunctions';
@@ -270,7 +270,7 @@ function MyThree() {
 
           togglePopup(4);
 
-          createOrbitingAlien(earth, camera, scene);
+          createOrbitingAlien(earth, camera, scene, pivot);
         }
       }
     });
