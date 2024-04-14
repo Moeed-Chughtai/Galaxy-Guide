@@ -23,7 +23,7 @@
     background-image: linear-gradient(to right, red, transparent);
 }
 
-.button-quiz {;
+.button-quiz {
     --bg: #ff0000;
     --hover-bg: #22b824;
     --hover-text: #000;
