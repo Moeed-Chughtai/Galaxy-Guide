@@ -133,7 +133,7 @@
     height: 1.7em;
     font-size: 12px;
     background-color: rgb(19, 22, 24);
-    color: rgb(159, 12, 12);
+    color: rgb(248, 50, 93);
     border: none;
     border-radius: 3px;
     pointer-events: none;
@@ -153,16 +153,15 @@
   }
 
 .defend-button {
+  position: relative;
   background-color: rgb(230, 34, 77);
-  border-radius: 6px;
+  border-radius: 5px;
   box-shadow: rgb(121, 18, 55) 0px 4px 0px 0px;
   padding: 15px;
-  margin-top: 90px;
-  margin-left: 70%;
   background-repeat: no-repeat;
   cursor: pointer;
   box-sizing: border-box;
-  width: 130px;
+  width: 154px;
   height: 49px;
   color: #fff;
   border: none;
@@ -170,6 +169,8 @@
   transition: all 0.3s ease-in-out;
   z-index: 1;
   overflow: hidden;
+  margin-top: 50%;
+  margin-left: 68%;
 }
 
 .defend-button::before {
@@ -187,4 +188,12 @@
 
 .defend-button:hover::before {
   width: 100%;
+}
+
+.planet-image {
+  height: 300px;
+  width: 300px;
+  margin-left: 20%;
+  margin-top:10%;
+  margin-bottom: 10%;
 }
