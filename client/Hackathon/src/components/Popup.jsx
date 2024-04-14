@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import planetsFacts from './../data/planet_data.json';
 import planetsData from './../data/planets_info.json';
 import Defend from './Defend';
 import './../css/popup_style.css';
@@ -9,6 +10,7 @@ import sunImage from '../images/sun.png';
 import jupiterImage from '../images/jupiter.png';
 
 function Popup({ trigger, setTrigger, planet }) {
+    const planetFacts = planetsFacts.find(item => item.id === planet);
     const planetData = planetsData.find(item => item.id === planet);
     const [showDefend, setShowDefend] = useState(false);
 
@@ -34,7 +36,7 @@ function Popup({ trigger, setTrigger, planet }) {
             case 'jupiter':
                 return jupiterImage;
             default:
-                return ''; // or a default image
+                return '';
         }
     };
 
@@ -58,9 +60,12 @@ function Popup({ trigger, setTrigger, planet }) {
                             <img src={getPlanetImage(planetData)} alt={planetData.name} className="planet-image"/>
                             <h1 className='planet-header'>{planetData.name} Facts</h1>
                             <ul className='planet-facts'>
-                                {planetData.facts.map((fact, index) => (
-                                    <li key={index}>• {fact}</li>
-                                ))}
+                                <li>• Gravity: {planetFacts.gravity} m/s²</li>
+                                <li>• Number of moons: {planetFacts.noOfMoons}</li>
+                                <li>• Mass: {planetFacts.mass} kilograms</li>
+                                <li>• Average temperature: {planetFacts.avgTemp} Kelvin</li>
+                                <li>• Average radius: {planetFacts.meanRadius} kilometers</li>
+                                <li>• Density: {planetFacts.density} kilograms per cubic meter</li>
                             </ul>
                         </div>
                     </div>

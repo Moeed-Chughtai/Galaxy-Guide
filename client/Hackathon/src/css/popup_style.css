@@ -66,6 +66,7 @@
 }
 
 .planet-title {
+    margin-top: 20px;
     font-weight: bold;
     font-size: xx-large;
     text-align: center;
@@ -84,6 +85,10 @@
 .planet-body {
     font-size: large;
     text-align: justify;
+}
+
+.planet-facts {
+  margin-left: 20px;
 }
 
 .close-button {
