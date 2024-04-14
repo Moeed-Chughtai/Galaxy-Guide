@@ -4,7 +4,7 @@ import Quiz from './Quiz'; // Import Quiz component
 import './../css/defend_style.css'; // Import custom CSS for the defend component
 
 function Defend({ trigger, setTrigger, planet }) {
-    const planetData = planetsData.find(item => item.id === planet); // Fetch planetData based on the selected planet
+    const planetData = planetsData.find(item => item.id === 4); // Fetch planetData based on the selected planet
 
     const [showQuiz, setShowQuiz] = useState(false); // Set showQuiz to false
 
@@ -17,7 +17,8 @@ function Defend({ trigger, setTrigger, planet }) {
         <>
             <div className="defend-frame">
                 <div className="defend-container">
-                    <h1 className='defend-title'>DEFEND {planetData.name.toUpperCase()}</h1>
+                    <h1 className='defend-title'>DEFEND {planetData.name.toUpperCase()}</h1> 
+                    {/* was planet data */}
                 </div>
                 <button className='continue-button' onClick={handleContinue}>Continue</button>
             </div>

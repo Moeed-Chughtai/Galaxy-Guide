@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 
+import '../css/three.css';
+
 import { useEffect, useRef } from "react";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
@@ -29,11 +31,23 @@ import Popup from './Popup';
 
 let pivot, venus, earth, mars, jupiter, saturn, uranus, neptune, rotation;
 
+import planetsData from './../data/planets_info.json';
+import Defend from './Defend';
+import './../css/popup_style.css';
 
-function MyThree() {
+// console.log('Rendering component with showDefend:', showDefend);
+
+function MyThree({ trigger, setTrigger, planet }) {
+
+
   //pop up stuff
-  const [selectedPlanet, setSelectedPlanet] = useState(null);
+    const [selectedPlanet, setSelectedPlanet] = useState(null);
     const [showPopup, setShowPopup] = useState(false);
+
+    const planetData = planetsData.find(item => item.id === planet);
+    const [showDefend, setShowDefend] = useState(false);
+
+    console.log('Rendering component with showDefend:', showDefend);
 
     const togglePopup = (planetId) => {
         setSelectedPlanet(planetId); // Set the selected planet
@@ -42,6 +56,35 @@ function MyThree() {
 
 
 
+    /////popup
+    // const planetData = planetsData.find(item => item.id === planet);
+    // const [showDefend, setShowDefend] = useState(false);
+
+    const handleClose = () => {
+      console.log('handleClose called');
+      setTrigger(false);
+  };
+  
+  const handleDefendClick = () => {
+      console.log('handleDefendClick called');
+      setTrigger(false);
+      setShowDefend(true);
+  };
+
+  const handleDefendClick2 = () => {
+    console.log('handleDefendClick called');
+    // setTrigger(false);
+    // setShowDefend(true);
+};
+  
+  const handleDefendClose = () => {
+      console.log('handleDefendClose called');
+      setShowDefend(false);
+  };
+
+    //just added this
+    // const togglePopupRef = useRef(togglePopup);
+    // togglePopupRef.current = togglePopup;
 
 
 
@@ -234,13 +277,17 @@ function MyThree() {
       if (shouldLookAtEarth) {
         let direction = new THREE.Vector3().subVectors(earth.position, camera.position);
         direction.normalize();
-        direction.multiplyScalar(-200);
+        direction.multiplyScalar(-100);
     
         let newPosition = earth.position.clone().add(direction);
         newPosition.add(earth.position.clone().normalize().multiplyScalar(300)); // Follow Earth's orbit
     
         camera.position.copy(newPosition);
         camera.lookAt(earth.position);
+
+        // Increase the camera's y position to move it higher
+        camera.position.y += 100;
+
       }
     }, 20);
     
@@ -253,6 +300,9 @@ function MyThree() {
     );
 
     const rayCaster = new THREE.Raycaster();
+
+
+    
 
     window.addEventListener('click', () => {
       rayCaster.setFromCamera(mousePosition, camera);
@@ -269,16 +319,74 @@ function MyThree() {
           shouldLookAtEarth = true;
 
           togglePopup(4);
+          // togglePopupRef.current(4);
 
           createOrbitingAlien(earth, camera, scene, pivot);
         }
       }
     });
 
+   
+      function handleKeyDown(event) {
+        if (event.key === 'd') {
+          handleDefendClick();
+        }
+      }
+    
+      document.addEventListener('keydown', handleKeyDown);
+  
+    
+    
+
+
   }, []);
   return (
     <div ref={refContainer}>
-      <Popup trigger={showPopup} setTrigger={setShowPopup} planet={selectedPlanet} />
+      <Popup trigger={showPopup} setTrigger={setShowPopup} planet={selectedPlanet} 
+      handleClose={handleClose} 
+      handleDefendClick={handleDefendClick} 
+      handleDefendClose={handleDefendClose}/>
+
+      {/* <div className='white-box'>
+        </div> */}
+
+
+{trigger && !showDefend && (
+                <div className="popup-frame">
+                    <button className="close-button" onClick={handleClose}>
+                        <span className="X"></span>
+                        <span className="Y"></span>
+                        <div className="close">Close</div>
+                    </button>
+                    <div className="popup">
+                        <div className='left-container'>
+                            <h1 className='planet-title'>{planetData.name}</h1>
+                            <h1 className='planet-header'>Information on {planetData.name}</h1>
+                            <p className='planet-body'>{planetData.body_paragraph}</p>
+                            <button className='defend-button' onClick={handleDefendClick}>Defend</button>
+                        </div>
+                        <div className='right-container'>
+                            <h1 className='planet-header'>{planetData.name} Facts</h1>
+                            <ul className='planet-facts'>
+                                {planetData.facts.map((fact, index) => (
+                                    <li key={index}>• {fact}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {showDefend && (
+                <Defend
+                    trigger={showDefend}
+                    setTrigger={handleDefendClose}
+                    planet={planet}
+                />
+            )} 
+            
+
+
+
     </div>
 
 
