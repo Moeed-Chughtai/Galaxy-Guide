@@ -37,7 +37,15 @@ import './../css/popup_style.css';
 
 // console.log('Rendering component with showDefend:', showDefend);
 
+import Quiz from './Quiz';
 function MyThree({ trigger, setTrigger, planet }) {
+  const [showQuiz, setShowQuiz] = useState(false);
+
+  const handleQuizClick = () => {
+    console.log('setshow quiz called');
+    // setTrigger(false);
+    setShowQuiz(true);
+};
 
 
   //pop up stuff
@@ -341,14 +349,17 @@ function MyThree({ trigger, setTrigger, planet }) {
     });
   }else if (event.key === 'c') {
 
-    
+    // setShowQuiz(true);
     const divs = document.querySelectorAll('div');
 
-    divs.forEach(div => {
-      if (div.id !== 'root' && div.id !== 'three' && !div.closest('#quiz')) {
-        div.parentNode.removeChild(div);
-      }
-    });
+    // divs.forEach(div => {
+    //   if (div.id !== 'root' && div.id !== 'three' && !div.closest('#quiz')) {
+    //     div.parentNode.removeChild(div);
+      // }
+
+      // setShowQuiz(true);
+      handleQuizClick();
+    // });
   }
           // handleDefendClick();
         }
@@ -407,6 +418,10 @@ function MyThree({ trigger, setTrigger, planet }) {
                     planet={planet}
                 />
             )} 
+
+{showQuiz && <Quiz />}
+
+
             
 
 
