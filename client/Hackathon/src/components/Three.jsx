@@ -156,7 +156,7 @@ function MyThree({ trigger, setTrigger, planet }) {
     //grid
 
     const gridHelper = new THREE.GridHelper(1000, 10);
-    scene.add(gridHelper)
+    // scene.add(gridHelper)
 
     //add mercury
     const mercuryGeo = new THREE.SphereGeometry(10, 10, 10);
@@ -330,8 +330,30 @@ function MyThree({ trigger, setTrigger, planet }) {
       function handleKeyDown(event) {
         if (event.key === 'd') {
           handleDefendClick();
+          // trigger(false);
+
+          const divs = document.querySelectorAll('div');
+
+    divs.forEach(div => {
+      if (div.id !== 'root' && div.id !== 'three' && !div.closest('#defend')) {
+        div.parentNode.removeChild(div);
+      }
+    });
+
+          // handleDefendClick();
         }
       }
+
+      // function handleKeyDown(event) {
+      //   if (event.key === 'e') {
+      //     handleDefendClick();
+      //     // trigger(false);
+
+          
+
+      //     // handleDefendClick();
+      //   }
+      // }
     
       document.addEventListener('keydown', handleKeyDown);
   
@@ -341,7 +363,7 @@ function MyThree({ trigger, setTrigger, planet }) {
 
   }, []);
   return (
-    <div ref={refContainer}>
+    <div id = 'three' ref={refContainer}>
       <Popup trigger={showPopup} setTrigger={setShowPopup} planet={selectedPlanet} 
       handleClose={handleClose} 
       handleDefendClick={handleDefendClick} 
