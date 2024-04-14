@@ -1,22 +1,27 @@
 import React, { useState } from "react";
+import planetsQuestions from '../data/quizzes.json';
 import "../css/Quiz.css";
 
 export default function Quiz({ trigger, setTrigger, planet }) {
     const [currentQuestion, setCurrentQuestion] = useState(0);
-
-    // const planetData = planetsData.find(item => item.id === planet);
+    const planetQuestions = planetsQuestions.find(item => item.id === 4);
 
     const questions = [
         {
             id: 1,
-            text: "Question 1?",
-            options: ["Option 1", "Option 2", "Option 3"]
+            text: planetQuestions.question1,
+            options: [planetQuestions.answers1[0], planetQuestions.answers1[1], planetQuestions.answers1[2]]
         },
         {
             id: 2,
-            text: "Question 2?",
-            options: ["Option A", "Option B", "Option C"]
+            text: planetQuestions.question2,
+            options: [planetQuestions.answers2[0], planetQuestions.answers2[1], planetQuestions.answers2[2]]
         },
+        {
+            id: 3,
+            text: planetQuestions.question3,
+            options: [planetQuestions.answers3[0], planetQuestions.answers3[1], planetQuestions.answers3[2]]
+        }
     ];
 
     const handleNextQuestion = () => {
