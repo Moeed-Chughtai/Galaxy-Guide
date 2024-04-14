@@ -17,6 +17,7 @@ export function createPlanet(planetName, size, distance, meshImg, scene, texture
     const planet = new THREE.Mesh(planetGeo, planetMat);
     scene.add(planet);
 
+    
     planet.position.set(distance, 0, 0);
     console.log(planetName + " created" + " at " + planet.position.x + " " + planet.position.y + " " + planet.position.z)
 

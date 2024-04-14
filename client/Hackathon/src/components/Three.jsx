@@ -16,6 +16,7 @@ import saturnimg from '../images/planetMeshes/saturn.jpg';
 import uranusimg from '../images/planetMeshes/uranus.png';
 import neptuneimg from '../images/planetMeshes/neptune.jpg';
 // import { MarginSharp } from '@mui/icons-material';
+import astronautDialogues from '../data/astronaut_dialogue.json'
 
 // import * as functions from './threeFunctions'
 import { createPlanet, startOrbit, followPlanet, createOrbitingAlien, createAlien} from './threeFunctions';
@@ -61,6 +62,7 @@ function MyThree({ trigger, setTrigger, planet }) {
     const togglePopup = (planetId) => {
         setSelectedPlanet(planetId); // Set the selected planet
         setShowPopup(!showPopup); // Toggle the popup
+        setDialogue(astronautDialogues.find((dialogue) => dialogue.id === planetId).dialogue);
     };
 
 

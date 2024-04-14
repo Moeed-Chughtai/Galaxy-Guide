@@ -5,6 +5,7 @@ import MyThree from './components/Three';
 import Quiz from './components/Quiz';
 import './index.css';
 import Home from './Home';
+import Astronaut from './components/Astronaut';
 
 function App() {
   const [selectedPlanet, setSelectedPlanet] = useState(null);
@@ -18,6 +19,7 @@ function App() {
   return (
     <React.StrictMode>
       <MyThree trigger={showPopup} setTrigger={setShowPopup} planet={selectedPlanet} />
+      <Astronaut text="Cllick on galaxy guide if you're ready to start your journey!"/>
     </React.StrictMode>
   );
 }

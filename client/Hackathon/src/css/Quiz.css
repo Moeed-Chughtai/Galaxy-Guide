@@ -34,8 +34,8 @@
 }
 
 .button-quiz {
-    --bg: #ff0000;
-    --hover-bg: #22b824;
+    --bg: #000000;
+    --hover-bg: #fffb00;
     --hover-text: #000;
     color: #fff;
     cursor: pointer;
