@@ -79,37 +79,43 @@ export default function Quiz({ trigger, setTrigger, planet }) {
                                         <p className="self-center text-3xl font-semibold mb-4">QUESTION {currentQuestion + 1} OF {questions.length}</p>
                                         <p className="self-center text-2xl font-medium">{questions[currentQuestion].text}</p>
                                         <p className="self-center text-xl font-medium">Time left: {timeLeft} seconds</p>
-                        </div>
-                        <form>
-                            <div className="quiz-options">
-                                {questions[currentQuestion].options.map((option, optionIndex) => (
-                                    <div key={optionIndex} className="relative">
-                                        <input
-                                            type="radio"
-                                            id={`option-${currentQuestion}-${optionIndex}`}
-                                            name={`question-${currentQuestion}`}
-                                            value={option}
-                                            className="sr-only"
-                                            onChange={() => handleOptionSelect(option)}
-                                        />
-                                        <label
-                                            htmlFor={`option-${currentQuestion}-${optionIndex}`}
-                                            className={`button-quiz block cursor-pointer border rounded-lg mt-8 ${
-                                                (showResults && option === questions[currentQuestion].correct) ? 'bg-green-400' :
-                                                (showResults && option !== questions[currentQuestion].correct && selectedOption === option) ? 'bg-red-400' :
-                                                'border-transparent'
-                                            }`}
-                                            >
-                                                <span className="relative z-10">{optionLabels[optionIndex]}: {option}</span>
-                                            </label>
+                                    </div>
+                                    <form>
+                                        <div className="quiz-options">
+                                            {questions[currentQuestion].options.map((option, optionIndex) => (
+                                                <div key={optionIndex} className="relative">
+                                                    <input
+                                                        type="radio"
+                                                        id={`option-${currentQuestion}-${optionIndex}`}
+                                                        name={`question-${currentQuestion}`}
+                                                        value={option}
+                                                        className="sr-only"
+                                                        onChange={() => handleOptionSelect(option)}
+                                                    />
+                                                    <label
+                                                        htmlFor={`option-${currentQuestion}-${optionIndex}`}
+                                                        className={`button-quiz block cursor-pointer border rounded-lg mt-8 ${
+                                                            (showResults && option === questions[currentQuestion].correct) ? 'bg-green-400' :
+                                                            (showResults && option !== questions[currentQuestion].correct && selectedOption === option) ? 'bg-red-400' :
+                                                            'border-transparent'
+                                                        }`}
+                                                    >
+                                                        <span className="relative z-10">{optionLabels[optionIndex]}: {option}</span>
+                                                    </label>
+                                                </div>
+                                            ))}
                                         </div>
-                                    ))}
-                                </div>
-                                <button type="button" onClick={handleNextButtonClick} className="button-arounder">Next</button>
-                            </form>
-                        </main>
-                    </section>
-                </div>
-            </div>
-        )
+                                        {currentQuestion < questions.length - 1 && (
+                                            <button type="button" onClick={handleNextButtonClick} className="button-arounder">Next</button>
+                                        )}
+                                        {currentQuestion === questions.length - 1 && (
+                                            <button type="submit" className="button-arounder">Submit</button>
+                                        )}
+                                    </form>
+                                </main>
+                            </section>
+                        </div>
+                    </div>
+                );
+                
     }

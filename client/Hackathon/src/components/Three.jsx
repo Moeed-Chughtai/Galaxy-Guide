@@ -178,15 +178,15 @@ function MyThree({ trigger, setTrigger, planet }) {
     const mercury = new THREE.Mesh(mercuryGeo, mercuryMat);
     scene.add(mercury);
 
-    mercury.position.set(200, 0, 0)
+    mercury.position.set(150, 0, 0)
 
-    const venus = createPlanet("venus", 20, 400, venusimg, scene, textureLoader);
-    const earth = createPlanet("earth", 30, 600, earthimg, scene, textureLoader);
-    const mars = createPlanet("mars", 20, 800, marsimg, scene, textureLoader);
-    const jupiter = createPlanet("jupiter", 50, 1000, jupiterimg, scene, textureLoader);
-    const saturn = createPlanet("saturn", 40, 1200, saturnimg, scene, textureLoader);
-    const uranus = createPlanet("uranus", 30, 1400, uranusimg, scene, textureLoader);
-    const neptune = createPlanet("neptune", 30, 1600, neptuneimg, scene, textureLoader);
+    const venus = createPlanet("venus", 20, 300, venusimg, scene, textureLoader);
+    const earth = createPlanet("earth", 30, 400, earthimg, scene, textureLoader);
+    const mars = createPlanet("mars", 20, 500, marsimg, scene, textureLoader);
+    const jupiter = createPlanet("jupiter", 50, 600, jupiterimg, scene, textureLoader);
+    const saturn = createPlanet("saturn", 40, 700, saturnimg, scene, textureLoader);
+    const uranus = createPlanet("uranus", 30, 800, uranusimg, scene, textureLoader);
+    const neptune = createPlanet("neptune", 30, 900, neptuneimg, scene, textureLoader);
 
     // const { venus, earth, mars, jupiter, saturn, uranus, neptune } = addAllPlanets(scene, textureLoader);
 
@@ -228,15 +228,15 @@ function MyThree({ trigger, setTrigger, planet }) {
 
     var animate = function () {
       requestAnimationFrame(animate);
-      time += 0.01;
-      startOrbit(mercury, 1, 200, time);
-      startOrbit(venus, 0.5, 400, time);
-      startOrbit(earth, 0.3, 600, time);
-      startOrbit(mars, 0.25, 800, time);
-      startOrbit(jupiter, 0.2, 1000, time);
-      startOrbit(saturn, 0.1, 1200, time);
-      startOrbit(uranus, 0.07, 1400, time);
-      startOrbit(neptune, 0.05, 1600, time);
+      time += 0.1;
+      startOrbit(mercury, 1, 150, time);
+      startOrbit(venus, 0.5, 200, time);
+      startOrbit(earth, 0.3, 300, time);
+      startOrbit(mars, 0.25, 400, time);
+      startOrbit(jupiter, 0.2, 500, time);
+      startOrbit(saturn, 0.1, 600, time);
+      startOrbit(uranus, 0.07, 700, time);
+      startOrbit(neptune, 0.05, 800, time);
 
       //spin planets
       // mercury.rotation.y += 0.01;
@@ -288,7 +288,7 @@ function MyThree({ trigger, setTrigger, planet }) {
       if (shouldLookAtEarth) {
         let direction = new THREE.Vector3().subVectors(earth.position, camera.position);
         direction.normalize();
-        direction.multiplyScalar(-100);
+        direction.multiplyScalar(-50);
     
         let newPosition = earth.position.clone().add(direction);
         newPosition.add(earth.position.clone().normalize().multiplyScalar(300)); // Follow Earth's orbit
