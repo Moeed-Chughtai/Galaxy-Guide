@@ -28,7 +28,7 @@
 .defend-title {
     font-size: 500%;
     color: red;
-    animation: animate 1.5s linear infinite;
+    animation: animate 2s linear infinite;
 }
 
 @keyframes animate { 
@@ -37,7 +37,7 @@
     } 
 
     50% { 
-        opacity: 0.7; 
+        opacity: 1; 
     } 
 
     100% { 

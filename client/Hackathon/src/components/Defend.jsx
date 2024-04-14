@@ -18,8 +18,8 @@ function Defend({ trigger, setTrigger, planet }) {
             <div className="defend-frame">
                 <div className="defend-container">
                     <h1 className='defend-title'>DEFEND {planetData.name.toUpperCase()}</h1>
+                    <button className='continue-button' onClick={handleContinue}>Continue</button>
                 </div>
-                <button className='continue-button' onClick={handleContinue}>Continue</button>
             </div>
             {showQuiz && (
             <Quiz
