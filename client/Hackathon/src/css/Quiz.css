@@ -17,6 +17,10 @@
   margin-bottom: 20%;
 }
 
+.quiz-title {
+  margin-top: 10%;
+}
+
 
 .border-gradient {
     background-image: linear-gradient(to right, red, yellow, green);

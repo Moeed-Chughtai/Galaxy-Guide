@@ -37,11 +37,11 @@ export default function Quiz({ trigger, setTrigger, planet }) {
 
     return (
         <div id = 'quiz' className="flex justify-center items-center mt-32">
-            <div className="h-2/5 w-3/5 quiz-container">
+            <div className="quiz-container">
                 <section key={questions[currentQuestion].id} className="quiz-section active">
                     <main>
                         <div className="w-96 flex flex-col justify-center align-middle">
-                            <h3 className="self-center text-5xl font-bold mb-4">Quiz</h3>
+                            <h3 className="self-center text-5xl font-bold mb-4 quiz-title">Quiz</h3>
                             <p className="self-center text-3xl font-semibold mb-4">QUESTION {currentQuestion + 1} OF {questions.length}</p>
                             <p className="self-center text-2xl font-medium">{questions[currentQuestion].text}</p>
                         </div>
