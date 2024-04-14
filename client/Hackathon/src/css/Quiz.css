@@ -1,7 +1,7 @@
 .quiz-container {
-  position: fixed; /* or 'absolute' if you want it relative to a parent element */
-  top: 50%; /* Adjust as needed */
-  left: 50%; /* Adjust as needed */
+  position: fixed;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
   height: 85%;
@@ -14,6 +14,7 @@
   align-items: stretch;
   align-content: stretch;
   z-index: 999;
+  margin-bottom: 20%;
 }
 
 
