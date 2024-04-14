@@ -9,8 +9,7 @@ import Defend from './components/Defend'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-     {/* <Quiz /> */}
+     <Quiz />
      {/* <MyThree /> */}
-      <Home />
   </React.StrictMode>,
 )
