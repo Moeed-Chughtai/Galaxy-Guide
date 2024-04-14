@@ -17,7 +17,7 @@ function App() {
 
   return (
     <React.StrictMode>
-      {}
+      <MyThree trigger={showPopup} setTrigger={setShowPopup} planet={selectedPlanet} />
     </React.StrictMode>
   );
 }
