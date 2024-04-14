@@ -16,10 +16,10 @@ function Defend({ trigger, setTrigger, planet }) {
     return trigger ? (
         <>
             <div className="defend-frame">
-                <div className="defend-container">
-                    <h1 className='defend-title'>DEFEND {planetData.name.toUpperCase()}</h1>
+                <div className="defend-container flex flex-col">
+                    <h1 className='defend-title self-center font-extrabold size-82'>DEFEND {planetData.name.toUpperCase()}</h1>
+                    <button className='continue-button border-2 rounded-2xl w-60 h-16 self-center font-semibold uppercase' onClick={handleContinue}>Continue</button>
                 </div>
-                <button className='continue-button' onClick={handleContinue}>Continue</button>
             </div>
             {showQuiz && (
             <Quiz
