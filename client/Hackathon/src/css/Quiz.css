@@ -23,7 +23,7 @@
     background-image: linear-gradient(to right, red, transparent);
 }
 
-.button-quiz {;
+.button-quiz {
     --bg: #ff0000;
     --hover-bg: #22b824;
     --hover-text: #000;
@@ -78,6 +78,11 @@ button {
       box-shadow calc(var(--dur) * 4) ease-out,
       transform calc(var(--dur) * 4) ease-out,
       background calc(var(--dur) * 4) steps(4, jump-end);
+    margin: 0 auto; /* Centering the button */
+    display: block;
+    margin-top: 20px;
+    padding-left: 20%;
+    padding-right: 20%;
   }
   
   .button-arounder:hover,
