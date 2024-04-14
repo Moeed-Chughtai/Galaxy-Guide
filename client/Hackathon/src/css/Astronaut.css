@@ -12,14 +12,26 @@
     left: 30px;
     width: 350px;
     height: 180px;
-    z-index: -999;
+    z-index: 999;
 }
 
-.text-speech {
-    color: white;
+.text-speech2 {
+    color: red;
+    justify-content: center;
     z-index: 1000;
 }
 
 .text-container {
-    background-color: blue;
+    background-color: transparent;
+    position: fixed;
+    display: flex;
+    font-size: 15px;
+    justify-content: center;
+    top: 502px;
+    left: 115px;
+    width: 200px;
+    height: 70px;
+    padding: 10px;
+    overflow: auto;
+    color: white;
 }

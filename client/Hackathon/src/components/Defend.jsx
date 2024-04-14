@@ -11,28 +11,7 @@ function Defend({ trigger, setTrigger, planet }) {
     const handleContinue = () => {
         setTrigger(false);
         setShowQuiz(true);
-
-        // handleButtonClick();
     };
-
-    const handleButtonClick = () => {
-        // Create a new 'keypress' event
-        var event = new KeyboardEvent('keypress', {
-          key: 'c',
-          code: 'KeyC',
-          charCode: 'c'.charCodeAt(0),
-          keyCode: 'c'.charCodeAt(0),
-          shiftKey: false,
-          ctrlKey: false,
-          altKey: false,
-          metaKey: false,
-          bubbles: true,
-          cancelable: true
-        });
-      
-        // Dispatch the event
-        document.dispatchEvent(event);
-      };
 
     return trigger ? (
         <>

@@ -60,3 +60,37 @@ app.get('/planets', async (req, res) => {
         res.status(500).send('Error fetching planets');
     }
 });
+
+app.post('/score/:name', async (req, res) => {
+    const name = req.params.name;
+    const score = req.body.score;
+
+    try {
+        let existingScore = await Score.findOne({ name });
+
+        if (existingScore) {
+            existingScore.score += 1;
+            await existingScore.save();
+            res.json(existingScore);
+        } else {
+            const newScore = new Score({ name, score });
+            await newScore.save();
+            res.json(newScore);
+        }
+    } catch (error) {
+        console.error('Error saving/updating score:', error);
+        res.status(500).send('Error saving/updating score');
+    }
+});
+
+
+// Top 5
+app.get('/score', async (req, res) => {
+    try {
+        const scores = await Score.find().sort({ score: -1 }).limit(5);
+        res.json(scores);
+    } catch (error) {
+        console.error('Error fetching scores:', error);
+        res.status(500).send('Error fetching scores');
+    }
+});

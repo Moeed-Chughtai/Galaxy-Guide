@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const AstronautSpeech = ({ text, onComplete }) => {
+const AstronautSpeech = ({ text }) => {
     const [visibleSpeech, setVisibleSpeech] = useState('');
 
     useEffect(() => {
@@ -13,7 +13,7 @@ const AstronautSpeech = ({ text, onComplete }) => {
                     clearInterval(interval);
                     setTimeout(() => {
                         setVisibleSpeech('');
-                    }, 10000);
+                    }, 2000);
                 }
                 return prevText;
             });
@@ -21,7 +21,7 @@ const AstronautSpeech = ({ text, onComplete }) => {
         }, 100);
 
         return () => clearInterval(interval);
-    }, [text, onComplete]);
+    }, [text]);
     
     return <div>{visibleSpeech}</div>
 };
