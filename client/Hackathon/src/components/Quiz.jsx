@@ -31,7 +31,7 @@ export default function Quiz({ trigger, setTrigger, planet }) {
     const optionLabels = ["A", "B", "C"];
 
     return (
-        <div id = 'quiz' className="flex justify-center items-center mt-32">
+        <div id = 'quiz' className="flex justify-center items-center mt-32 ">
             <div className="h-2/5 w-3/5 quiz-container">
                 <section key={questions[currentQuestion].id} className="quiz-section active">
                     <main>
