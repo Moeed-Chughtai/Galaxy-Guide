@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import planetsQuestions from '../data/quizzes.json';
 import "../css/Quiz.css";
 
-export default function Quiz({ trigger, setTrigger, planet }) {
+export default function Quiz({ trigger, setTrigger, planet , handleNextClick}) {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const planetQuestions = planetsQuestions.find(item => item.id === 4);
 
