@@ -3,6 +3,11 @@ import planetsData from './../data/planets_info.json';
 import Defend from './Defend';
 import './../css/popup_style.css';
 
+// image import
+import earthImage from '../images/earth.png';
+import sunImage from '../images/sun.png';
+import jupiterImage from '../images/jupiter.png';
+
 function Popup({ trigger, setTrigger, planet }) {
     const planetData = planetsData.find(item => item.id === planet);
     const [showDefend, setShowDefend] = useState(false);
@@ -18,6 +23,19 @@ function Popup({ trigger, setTrigger, planet }) {
 
     const handleDefendClose = () => {
         setShowDefend(false);
+    };
+
+    const getPlanetImage = (planetData) => {
+        switch (planetData.name.toLowerCase()) {
+            case 'earth':
+                return earthImage;
+            case 'sun':
+                return sunImage;
+            case 'jupiter':
+                return jupiterImage;
+            default:
+                return ''; // or a default image
+        }
     };
 
     return (
@@ -37,6 +55,7 @@ function Popup({ trigger, setTrigger, planet }) {
                             <button className='defend-button' onClick={handleDefendClick}>Defend</button>
                         </div>
                         <div className='right-container'>
+                            <img src={getPlanetImage(planetData)} alt={planetData.name} className="planet-image"/>
                             <h1 className='planet-header'>{planetData.name} Facts</h1>
                             <ul className='planet-facts'>
                                 {planetData.facts.map((fact, index) => (
