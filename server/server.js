@@ -50,3 +50,13 @@ app.post('/api/:planet', async (req, res) => {
         res.status(500).send('Error fetching planet data');
     }
 });
+
+app.get('/planets', async (req, res) => {
+    try {
+        const planets = await Planet.find();
+        res.json(planets);
+    } catch (error) {
+        console.error('Error fetching planets:', error);
+        res.status(500).send('Error fetching planets');
+    }
+});

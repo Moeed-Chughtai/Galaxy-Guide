@@ -1,0 +1,92 @@
+[
+    {
+      "id": "1",
+      "name": "mercury",
+      "noOfMoons": 0,
+      "avgTemp": 440,
+      "mass": 3.30114,
+      "meanRadius": 2439.4,
+      "gravity": 3.7,
+      "density": 5.4291
+    },
+    {
+      "id": "2",
+      "name": "venus",
+      "noOfMoons": 0,
+      "avgTemp": 737,
+      "mass": 4.86747,
+      "meanRadius": 6051.8,
+      "gravity": 8.87,
+      "density": 5.243
+    },
+    {
+      "id": "3",
+      "name": "earth",
+      "noOfMoons": 1,
+      "avgTemp": 288,
+      "mass": 5.97237,
+      "meanRadius": 6371.0084,
+      "gravity": 9.8,
+      "density": 5.5136
+    },
+    {
+      "id": "4",
+      "name": "mars",
+      "noOfMoons": 2,
+      "avgTemp": 210,
+      "mass": 6.41712,
+      "meanRadius": 3389.5,
+      "gravity": 3.71,
+      "density": 3.9341
+    },
+    {
+      "id": "5",
+      "name": "jupiter",
+      "noOfMoons": 95,
+      "avgTemp": 165,
+      "mass": 1.89819,
+      "meanRadius": 69911,
+      "gravity": 24.79,
+      "density": 1.3262
+    },
+    {
+      "id": "6",
+      "name": "saturn",
+      "noOfMoons": 146,
+      "avgTemp": 134,
+      "mass": 5.68336,
+      "meanRadius": 58232,
+      "gravity": 10.44,
+      "density": 0.6871
+    },
+    {
+      "id": "7",
+      "name": "uranus",
+      "noOfMoons": 27,
+      "avgTemp": 76,
+      "mass": 8.68127,
+      "meanRadius": 25362,
+      "gravity": 8.87,
+      "density": 1.27
+    },
+    {
+      "id": "8",
+      "name": "neptune",
+      "noOfMoons": 14,
+      "avgTemp": 55,
+      "mass": 1.02413,
+      "meanRadius": 24622,
+      "gravity": 11.15,
+      "density": 1.638
+    },
+    {
+      "id": "9",
+      "name": "sun",
+      "noOfMoons": 0,
+      "avgTemp": 0,
+      "mass": 1.989,
+      "meanRadius": 695508,
+      "gravity": 0,
+      "density": 1
+    }
+]
