@@ -10,6 +10,7 @@ import Defend from './components/Defend'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
      {/* <Quiz /> */}
-     <Home />
+     {/* <MyThree /> */}
+      <Home />
   </React.StrictMode>,
 )
