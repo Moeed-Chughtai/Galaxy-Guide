@@ -8,6 +8,7 @@ import Home from './Home'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Home />
+     {/* <Quiz /> */}
+     <MyThree />
   </React.StrictMode>,
 )

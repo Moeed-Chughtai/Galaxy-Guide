@@ -12,6 +12,7 @@ function Popup({ trigger, setTrigger, planet }) {
     };
 
     const handleDefendClick = () => {
+        setTrigger(false);
         setShowDefend(true);
     };
 

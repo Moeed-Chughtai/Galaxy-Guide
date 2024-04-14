@@ -1,25 +1,16 @@
 import React, { useState } from 'react';
 import planetsData from './../data/planets_info.json'; // Import planetsData
-import './../css/defend_style.css'; // Import custom CSS for the defend component
 import Quiz from './Quiz'; // Import Quiz component
+import './../css/defend_style.css'; // Import custom CSS for the defend component
 
 function Defend({ trigger, setTrigger, planet }) {
-
     const planetData = planetsData.find(item => item.id === planet); // Fetch planetData based on the selected planet
 
-    const [quizTrigger, setQuizTrigger] = useState(false); // Set quizTrigger to false
-
-    const handleClose = () => {
-        setTrigger(false);
-    };
-
-    const handleDefend = () => {
-        setTrigger(false);
-    };
+    const [showQuiz, setShowQuiz] = useState(false); // Set showQuiz to false
 
     const handleContinue = () => {
-        console.log("Continuing...");
         setTrigger(false);
+        setShowQuiz(true);
     };
 
     return trigger ? (
@@ -30,14 +21,14 @@ function Defend({ trigger, setTrigger, planet }) {
                 </div>
                 <button className='continue-button' onClick={handleContinue}>Continue</button>
             </div>
-            {quizTrigger && (
-                <Quiz
-                    trigger={quizTrigger}
-                    setTrigger={setQuizTrigger}
-                    planet={planet}
-                />
+            {showQuiz && (
+            <Quiz
+                trigger={showQuiz}
+                setTrigger={setTrigger}
+                planet={planet}
+            />
             )}
-        </>    
+        </>
     ) : null;
 }
 
