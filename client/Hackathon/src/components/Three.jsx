@@ -38,6 +38,7 @@ import './../css/popup_style.css';
 // console.log('Rendering component with showDefend:', showDefend);
 
 import Quiz from './Quiz';
+
 function MyThree({ trigger, setTrigger, planet }) {
   const [showQuiz, setShowQuiz] = useState(false);
 
@@ -352,14 +353,14 @@ function MyThree({ trigger, setTrigger, planet }) {
     // setShowQuiz(true);
     const divs = document.querySelectorAll('div');
 
-    // divs.forEach(div => {
-    //   if (div.id !== 'root' && div.id !== 'three' && !div.closest('#quiz')) {
-    //     div.parentNode.removeChild(div);
-      // }
+    divs.forEach(div => {
+      if (div.id !== 'root' && div.id !== 'three' && !div.closest('#quiz')) {
+        div.parentNode.removeChild(div);
+      }
 
       // setShowQuiz(true);
       handleQuizClick();
-    // });
+    });
   }
           // handleDefendClick();
         }
