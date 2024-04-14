@@ -334,26 +334,28 @@ function MyThree({ trigger, setTrigger, planet }) {
 
           const divs = document.querySelectorAll('div');
 
+          divs.forEach(div => {
+            if (div.id !== 'root' && div.id !== 'three' && !div.closest('#defend')) {
+              div.parentNode.removeChild(div);
+            }
+    });
+  }else if (event.key === 'c') {
+
+    
+    const divs = document.querySelectorAll('div');
+
     divs.forEach(div => {
-      if (div.id !== 'root' && div.id !== 'three' && !div.closest('#defend')) {
+      if (div.id !== 'root' && div.id !== 'three' && !div.closest('#quiz')) {
         div.parentNode.removeChild(div);
       }
     });
-
+  }
           // handleDefendClick();
         }
-      }
+      
+    
 
-      // function handleKeyDown(event) {
-      //   if (event.key === 'e') {
-      //     handleDefendClick();
-      //     // trigger(false);
-
-          
-
-      //     // handleDefendClick();
-      //   }
-      // }
+      
     
       document.addEventListener('keydown', handleKeyDown);
   
