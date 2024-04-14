@@ -17,9 +17,7 @@ function App() {
 
   return (
     <React.StrictMode>
-      {/* <Quiz /> */}
-      <MyThree trigger={showPopup} setTrigger={setShowPopup} planet={selectedPlanet} />
-      {/* <Home /> */}
+      {}
     </React.StrictMode>
   );
 }
