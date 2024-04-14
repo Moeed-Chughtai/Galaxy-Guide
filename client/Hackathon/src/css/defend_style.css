@@ -28,19 +28,33 @@
 .defend-title {
     font-size: 500%;
     color: red;
-    animation: animate 2s linear infinite;
+    animation: animate 1s linear infinite;
 }
 
-@keyframes animate { 
-    0% { 
-        opacity: 0; 
-    } 
+.continue-button {
+    background-color: red;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
 
-    50% { 
-        opacity: 1; 
-    } 
+.continue-button:hover {
+    transform: scale(1.5);
+    background-color: green;
+    border-radius: 1rem;
+}
 
-    100% { 
-        opacity: 0; 
-    } 
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
