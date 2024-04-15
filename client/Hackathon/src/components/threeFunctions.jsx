@@ -10,7 +10,10 @@ import neptuneimg from '../images/planetMeshes/neptune.jpg';
 
 
 export function createPlanet(planetName, size, distance, meshImg, scene, textureLoader) {
-    const planetGeo = new THREE.SphereGeometry(size, size, size);
+    
+    const polySize = size*10;
+    
+    const planetGeo = new THREE.SphereGeometry(size, polySize, polySize);
     const planetMat = new THREE.MeshStandardMaterial({
         map: textureLoader.load(meshImg),
         displacementMap: textureLoader.load(meshImg),
@@ -30,6 +33,17 @@ export function createPlanet(planetName, size, distance, meshImg, scene, texture
     // planet.shadow.camera.far = 2000;
 
     return planet;
+}
+
+function logDiffSize(input) {
+    const base = 10; 
+    const offset = 500; 
+
+    if (input > offset) {
+        return input + Math.log(input - offset + 1) / Math.log(base);
+    } else {
+        return input;
+    }
 }
 
 export function startOrbit(planet, multiplier, distance,  time) {
