@@ -23,13 +23,18 @@ export function createPlanet(planetName, size, distance, meshImg, scene, texture
 
     planet.castShadow = true;
     planet.receiveShadow = true;
-    
+
+    planet.parametricOffset = Math.random() ;
+    // planet.shadow.camera.far = 2000;
+
     return planet;
 }
 
 export function startOrbit(planet, multiplier, distance,  time) {
-    planet.position.x = distance * Math.cos(time * multiplier);
-    planet.position.z = distance * Math.sin(time * multiplier);
+    const parametricOffset = Math.random() ;
+
+    planet.position.x = distance * Math.cos(time * multiplier + planet.parametricOffset);
+    planet.position.z = distance * Math.sin(time * multiplier + planet.parametricOffset);
 }
 
 export function followPlanet(planet, camera) {
@@ -49,7 +54,7 @@ export function createOrbitingAlien(planet, camera, scene, pivot) {
     pivot.position.copy(planet.position);
     
   
-    alien.position.set(0, 0,  planet.geometry.parameters.radius); 
+    alien.position.set(0, 0,  planet.geometry.parameters.radius + 100); 
     
   
     pivot.add(alien);

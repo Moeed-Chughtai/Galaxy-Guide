@@ -17,10 +17,14 @@ function App() {
   };
 
   return (
+    <>
     <React.StrictMode>
-      <MyThree trigger={showPopup} setTrigger={setShowPopup} planet={selectedPlanet} />
+      
       <Astronaut text="Cllick on galaxy guide if you're ready to start your journey!"/>
     </React.StrictMode>
+
+    <MyThree trigger={showPopup} setTrigger={setShowPopup} planet={selectedPlanet} />
+    </>
   );
 }
 

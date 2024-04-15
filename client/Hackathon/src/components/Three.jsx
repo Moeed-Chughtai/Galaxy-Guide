@@ -106,7 +106,7 @@ function MyThree({ trigger, setTrigger, planet }) {
 
     renderer.shadowMap.enabled = true;
     renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild( renderer.domElement );
+    // document.body.appendChild( renderer.domElement );
 
     camera.position.set(100, 100, 1000);
     controls.update();
@@ -174,6 +174,7 @@ function MyThree({ trigger, setTrigger, planet }) {
     // Set the position of the light to the position of the sun
     sunLight.position.set(sun.position.x, sun.position.y, sun.position.z);
     sunLight.castShadow = true;
+    sunLight.shadow.camera.far = 2000;
     scene.add(sunLight);
 
 
