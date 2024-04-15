@@ -66,11 +66,6 @@ function MyThree({ trigger, setTrigger, planet }) {
     };
 
 
-
-    /////popup
-    // const planetData = planetsData.find(item => item.id === planet);
-    // const [showDefend, setShowDefend] = useState(false);
-
     const handleClose = () => {
       console.log('handleClose called');
       setTrigger(false);
@@ -82,20 +77,14 @@ function MyThree({ trigger, setTrigger, planet }) {
       setShowDefend(true);
   };
 
-  const handleDefendClick2 = () => {
-    console.log('handleDefendClick called');
-    // setTrigger(false);
-    // setShowDefend(true);
-};
+
   
   const handleDefendClose = () => {
       console.log('handleDefendClose called');
       setShowDefend(false);
   };
 
-    //just added this
-    // const togglePopupRef = useRef(togglePopup);
-    // togglePopupRef.current = togglePopup;
+
 
 
 
@@ -104,8 +93,6 @@ function MyThree({ trigger, setTrigger, planet }) {
 
   useEffect(() => {
     // === THREE.JS CODE START ===
-
-    
 
 
     var scene = new THREE.Scene();
@@ -147,9 +134,8 @@ function MyThree({ trigger, setTrigger, planet }) {
 
 
 
-    //ambient lighting
-    const overallLight = new THREE.AmbientLight(0x333333)
-    scene.add(overallLight)                                  //could be brighter?
+
+
     
     //plane geomreyr
     // const planeGeo = new THREE.PlaneGeometry(200, 200);
@@ -168,6 +154,10 @@ function MyThree({ trigger, setTrigger, planet }) {
 
     const gridHelper = new THREE.GridHelper(1000, 10);
     // scene.add(gridHelper)
+
+    //ambient lighting
+    const overallLight = new THREE.AmbientLight(0x333333, 2)
+    scene.add(overallLight) 
 
     //add mercury
     const mercuryGeo = new THREE.SphereGeometry(10, 10, 10);
@@ -188,7 +178,7 @@ function MyThree({ trigger, setTrigger, planet }) {
     const uranus = createPlanet("uranus", 30, 800, uranusimg, scene, textureLoader);
     const neptune = createPlanet("neptune", 30, 900, neptuneimg, scene, textureLoader);
 
-    // const { venus, earth, mars, jupiter, saturn, uranus, neptune } = addAllPlanets(scene, textureLoader);
+
 
     const alien = createAlien();
     alien.position.set(200, 0, 0); 
@@ -196,14 +186,19 @@ function MyThree({ trigger, setTrigger, planet }) {
 
     //add sun
     const sunGeo = new THREE.SphereGeometry(100, 100, 100);
-    const sunMat = new THREE.MeshStandardMaterial({
+    const sunMat = new THREE.MeshBasicMaterial({
   
         map: textureLoader.load(sunimg),
     });
     const sun = new THREE.Mesh(sunGeo, sunMat);
     scene.add(sun);
 
-    const sunLight = new THREE.HemisphereLight(0xffffff, 0x000000, 1);
+   
+
+    // Create a point light with color white, intensity 1, and no decay over distance
+    const sunLight = new THREE.PointLight(0xffffff, 5, 0, 0);
+    // Set the position of the light to the position of the sun
+    sunLight.position.set(sun.position.x, sun.position.y, sun.position.z);
     scene.add(sunLight);
 
 
@@ -321,16 +316,10 @@ function MyThree({ trigger, setTrigger, planet }) {
       if (intersects.length > 0) {
         const object = intersects[0].object;
         if (object === earth) {
-          // shouldFollowEarth = !shouldFollowEarth;
-
-         
-          // shouldFollowEarth = true;
-
-          // shouldLookAtEarth = !shouldLookAtEarth;
+    
           shouldLookAtEarth = true;
 
           togglePopup(4);
-          // togglePopupRef.current(4);
 
           createOrbitingAlien(earth, camera, scene, pivot);
         }
@@ -385,8 +374,6 @@ function MyThree({ trigger, setTrigger, planet }) {
       handleDefendClick={handleDefendClick} 
       handleDefendClose={handleDefendClose}/>
 
-      {/* <div className='white-box'>
-        </div> */}
 
 
 {trigger && !showDefend && (
