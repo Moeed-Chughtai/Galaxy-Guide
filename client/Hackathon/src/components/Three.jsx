@@ -187,12 +187,20 @@ loader.load(sunimg, function(texture) {
   uniform sampler2D uTexture;
   varying vec2 vUv;
 
-  void main() {
-    // Sample the texture
-    vec4 texColor = texture(uTexture, vUv);
+  // Function to create noise
+      float noise(vec2 uv) {
+        return fract(sin(dot(uv, vec2(12.9898,78.233))) * 43758.5453);
+      }
 
-    // Set the fragment color to the texture color
-    gl_FragColor = texColor;
+      void main() {
+        // Sample the texture
+        vec4 texColor = texture(uTexture, vUv);
+
+        // Add noise based on time to create a moving effect
+    float n = noise(vUv + time * 0.1) * 0.5; // Reduce the effect of the noise
+
+    // Set the fragment color to the texture color plus the noise
+    gl_FragColor = vec4(texColor.r + n, texColor.g + n * 0.5, texColor.b, texColor.a);
   }
 `
     
