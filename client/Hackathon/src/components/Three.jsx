@@ -159,23 +159,82 @@ function MyThree({ trigger, setTrigger, planet }) {
     scene.add(alien);
 
     //add sun
-    const sunGeo = new THREE.SphereGeometry(100, 100, 100);
-    const sunMat = new THREE.MeshBasicMaterial({
-  
-        map: textureLoader.load(sunimg),
-    });
-    const sun = new THREE.Mesh(sunGeo, sunMat);
-    scene.add(sun);
+    // Load the texture
+
+
+// Load the texture
+
+let sunMaterial;
+let sun;
+const loader = new THREE.TextureLoader();
+loader.load(sunimg, function(texture) {
+  // Create a custom shader material
+  sunMaterial = new THREE.ShaderMaterial({
+    uniforms: {
+      time: { value: 0 },
+      uTexture: { value: texture }
+    },
+    vertexShader: `
+      varying vec2 vUv;
+
+      void main() {
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: `
+  uniform float time;
+  uniform sampler2D uTexture;
+  varying vec2 vUv;
+
+  void main() {
+    // Sample the texture
+    vec4 texColor = texture(uTexture, vUv);
+
+    // Set the fragment color to the texture color
+    gl_FragColor = texColor;
+  }
+`
+    
+  });
+
+  // Create a sphere geometry for the sun
+  const sunGeometry = new THREE.SphereGeometry(100, 100, 100);
+
+  // Create a mesh with the geometry and material
+  sun = new THREE.Mesh(sunGeometry, sunMaterial);
+
+  // Set the sun's position
+  sun.position.set(0, 0, 0);
+
+  // Add the sun to the scene
+  scene.add(sun);
+  animateSun();
+
+  // Create a point light with color white, intensity 1, and no decay over distance
+  const sunLight = new THREE.PointLight(0xffffff, 5, 0, 0);
+  // Set the position of the light to the position of the sun
+  sunLight.position.set(sun.position.x, sun.position.y, sun.position.z);
+  sunLight.castShadow = true;
+  sunLight.shadow.camera.far = 2000;
+  scene.add(sunLight);
+});
+
+function animateSun() {
+  // Update the time uniform
+  sunMaterial.uniforms.time.value = performance.now() / 1000;
+
+  // Render the scene
+  renderer.render(scene, camera);
+
+  // Request the next frame
+  requestAnimationFrame(animateSun);
+}
+
 
    
 
-    // Create a point light with color white, intensity 1, and no decay over distance
-    const sunLight = new THREE.PointLight(0xffffff, 5, 0, 0);
-    // Set the position of the light to the position of the sun
-    sunLight.position.set(sun.position.x, sun.position.y, sun.position.z);
-    sunLight.castShadow = true;
-    sunLight.shadow.camera.far = 2000;
-    scene.add(sunLight);
+    
 
 
     
