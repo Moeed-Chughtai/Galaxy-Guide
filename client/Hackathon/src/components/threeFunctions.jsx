@@ -21,6 +21,9 @@ export function createPlanet(planetName, size, distance, meshImg, scene, texture
     planet.position.set(distance, 0, 0);
     console.log(planetName + " created" + " at " + planet.position.x + " " + planet.position.y + " " + planet.position.z)
 
+    planet.castShadow = true;
+    planet.receiveShadow = true;
+    
     return planet;
 }
 

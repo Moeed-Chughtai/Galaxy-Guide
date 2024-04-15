@@ -39,6 +39,7 @@ import './../css/popup_style.css';
 // console.log('Rendering component with showDefend:', showDefend);
 
 import Quiz from './Quiz';
+import { render } from 'react-dom';
 
 function MyThree({ trigger, setTrigger, planet }) {
   const [showQuiz, setShowQuiz] = useState(false);
@@ -102,15 +103,19 @@ function MyThree({ trigger, setTrigger, planet }) {
     const controls = new OrbitControls(camera, refContainer.current); //refContainer.current
     
     var renderer = new THREE.WebGLRenderer();
+
+    renderer.shadowMap.enabled = true;
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild( renderer.domElement );
 
-    camera.position.set(100, 100, 1400);
+    camera.position.set(100, 100, 1000);
     controls.update();
 
 
     // use ref as a mount point of the Three.js scene instead of the document.body
-    refContainer.current && refContainer.current.appendChild( renderer.domElement );
+
+    refContainer.current
+    refContainer.current.appendChild( renderer.domElement );
 
 
     //images loading
@@ -132,44 +137,13 @@ function MyThree({ trigger, setTrigger, planet }) {
     ]);
 
 
-
-
-
-
-    
-    //plane geomreyr
-    // const planeGeo = new THREE.PlaneGeometry(200, 200);
-    // const planeMat = new THREE.MeshBasicMaterial({
-    //     color: 0xffffff,
-    //     side: THREE.DoubleSide
-    // });
-    // const plane = new THREE.Mesh(planeGeo, planeMat);
-
-    // //changes rotation to fit grid
-    // plane.rotation.x = -0.5 * 3.1415926
-
-    // scene.add(plane);   ////////////////add white flat here
-
-    //grid
-
-    const gridHelper = new THREE.GridHelper(1000, 10);
-    // scene.add(gridHelper)
-
     //ambient lighting
     const overallLight = new THREE.AmbientLight(0x333333, 2)
     scene.add(overallLight) 
 
-    //add mercury
-    const mercuryGeo = new THREE.SphereGeometry(10, 10, 10);
-    const mercuryMat = new THREE.MeshStandardMaterial({           //
-        // color: 0x00ff00,
-        map: textureLoader.load(mercuryimg),
-    });
-    const mercury = new THREE.Mesh(mercuryGeo, mercuryMat);
-    scene.add(mercury);
+   
 
-    mercury.position.set(150, 0, 0)
-
+    const mercury = createPlanet("mercury", 10, 150, mercuryimg, scene, textureLoader);
     const venus = createPlanet("venus", 20, 300, venusimg, scene, textureLoader);
     const earth = createPlanet("earth", 30, 400, earthimg, scene, textureLoader);
     const mars = createPlanet("mars", 20, 500, marsimg, scene, textureLoader);
@@ -199,6 +173,7 @@ function MyThree({ trigger, setTrigger, planet }) {
     const sunLight = new THREE.PointLight(0xffffff, 5, 0, 0);
     // Set the position of the light to the position of the sun
     sunLight.position.set(sun.position.x, sun.position.y, sun.position.z);
+    sunLight.castShadow = true;
     scene.add(sunLight);
 
 
