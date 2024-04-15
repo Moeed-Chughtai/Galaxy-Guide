@@ -13,6 +13,8 @@ export function createPlanet(planetName, size, distance, meshImg, scene, texture
     const planetGeo = new THREE.SphereGeometry(size, size, size);
     const planetMat = new THREE.MeshStandardMaterial({
         map: textureLoader.load(meshImg),
+        displacementMap: textureLoader.load(meshImg),
+        displacementScale: 5.0,
     });
     const planet = new THREE.Mesh(planetGeo, planetMat);
     scene.add(planet);
