@@ -268,7 +268,7 @@ loader.load(sunimg, function(texture) {
     vUv = uv;
     vec3 pos = position;
     vec3 noise = snoise(vec3(pos.x*0.03, pos.y*0.03 + time * 0.5, pos.z*0.03));
-    pos += noise * 7.0; // Displace the vertex in all directions        //size
+    pos += noise * 4.0; // Displace the vertex in all directions        //size
     gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
   }
 `,
