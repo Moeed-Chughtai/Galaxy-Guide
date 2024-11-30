@@ -351,7 +351,7 @@ function animateSun() {
       time += 0.1;
       startOrbit(mercury, 1, 150, time);
       startOrbit(venus, 0.5, 200, time);
-      startOrbit(earth, 0.3, 300, time);
+      // startOrbit(earth, 0.3, 300, time);
       startOrbit(mars, 0.25, 400, time);
       startOrbit(jupiter, 0.2, 500, time);
       startOrbit(saturn, 0.1, 600, time);
